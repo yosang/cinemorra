@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 import styles from "../styles/HomeSection.module.css"
 
 type Props = {
@@ -13,7 +13,9 @@ export default function HomeSection( { headerText, children }:Props ) {
                 <h1>{headerText}</h1>
             </header>
             <div className={styles.row}>
-                {children}
+                <Suspense fallback={<p>Loading...</p>}>
+                    {children}
+                </Suspense>
             </div>
         </div>
     )

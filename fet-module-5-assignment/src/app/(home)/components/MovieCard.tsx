@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import styles from "../styles/MovieCard.module.css"
 type Props = {
     image: string,
     overlayText: string
@@ -10,15 +10,17 @@ type Props = {
 export default function MovieCard({ image, overlayText }:Props) {
     return(
         <>
-        <div style={{ position: "relative", width: "200px", height: "300px" }}>
+        <div className={styles.layout}>
             <Image 
                 src={image}
                 fill
                 alt="Movie card image"
                 style={{ objectFit: "cover"}}
             />
-            <div>
-                <p>{overlayText}</p>
+            <div className={styles.overlayClickableArea}>
+                <div className={styles.overlayText}>
+                    <p>{overlayText}</p>
+                </div>
             </div>
         </div>
         </>
