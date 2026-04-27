@@ -9,15 +9,15 @@ export default async function HomeView() {
     const movies = await getMovies();
 
   return (
-      <div>
+      <>
         <Hero imageSource={HomeHeroImage}>
-           <h2>Borrow movies and watch them for free</h2>
-            <h3>We do our best to put out the latest and most interesting movies, watch from anywhere as long as you have an interect connection.</h3>
+            <h2>Borrow movies and watch them for free</h2>
+            <h3>Watch from anywhere as long as you have an interect connection.</h3>
         </Hero>
-        
-      <HomeSection headerText="Latest addition">
-          {movies.slice(-5).map((m:Movie) => (<MovieCard key={m.id} image={m.poster} overlayText={m.name}/>))}
-      </HomeSection>
-      </div>
+          
+        <HomeSection headerText="Latest addition">
+            {movies.slice(-5).map((m:Movie) => (<MovieCard key={m.id} image={m.poster} overlayText={m.name}/>))}
+        </HomeSection>
+      </>
   )
 }

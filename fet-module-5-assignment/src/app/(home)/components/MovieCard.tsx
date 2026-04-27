@@ -5,8 +5,6 @@ type Props = {
     overlayText: string
 };
 
-// http://images.restapi.co.za/posters/inception.png
-
 export default function MovieCard({ image, overlayText }:Props) {
     return(
         <>

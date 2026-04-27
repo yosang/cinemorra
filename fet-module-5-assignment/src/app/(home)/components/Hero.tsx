@@ -2,15 +2,13 @@ import { ReactNode, Suspense } from "react";
 import Image from "next/image";
 import styles from "../styles/HomePage.module.css"
 
-type Props = {
+type HeroProps = {
     children: ReactNode,
     imageSource: string
 };
 
-export default function Hero({ children, imageSource }: Props) {
-    return (
-        <>
-        <Suspense fallback={<p>Loading...</p>}>
+export default function Hero({ children, imageSource }: HeroProps) {
+    return <Suspense fallback={<p>Loading...</p>}>
                 <div className={styles.hero}>
                     <Image 
                       src={imageSource} 
@@ -23,6 +21,5 @@ export default function Hero({ children, imageSource }: Props) {
                     </div>
                 </div>
         </Suspense>
-        </>
-    )
+    
 }
