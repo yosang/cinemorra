@@ -1,11 +1,19 @@
 import { ReactNode } from "react";
+import TopNavbar from "./components/Navbar";
+import styles from "./styles/Layout.module.css"
 
 export default function HomeLayout({children}:{children: ReactNode}) {
     return (
-        <>
-        <h1>Navbar</h1>
-            {children}
-        <h1>Footer</h1>
-        </>
+        <div className={styles.layout} >
+            <header>
+                <TopNavbar />
+            </header>
+            <main className={styles.main}>
+                {children}
+            </main>
+            <footer className={styles.footer}>
+                <p>© 2026 MIT License. All rights reserved.</p>
+            </footer>
+        </div>
     )
 }

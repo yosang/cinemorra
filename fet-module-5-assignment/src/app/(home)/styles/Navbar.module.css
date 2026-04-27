@@ -1,0 +1,6 @@
+.logo {
+    display: flex;
+    align-items: center;
+    color: var(--color-text);
+    text-decoration: none;
+}

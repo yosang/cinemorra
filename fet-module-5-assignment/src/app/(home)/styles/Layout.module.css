@@ -1,0 +1,19 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.main {
+    flex: 1;
+    padding: var(--spacing-sm) var(--spacing-md);
+    max-width: 97vw;
+    width: 100%;
+    margin: auto;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    padding: var(--spacing-sm);
+}

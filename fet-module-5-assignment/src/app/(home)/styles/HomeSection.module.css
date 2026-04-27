@@ -1,0 +1,17 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    gap: 20px;
+}
+
+.row {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
