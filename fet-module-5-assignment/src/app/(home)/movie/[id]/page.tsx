@@ -1,22 +1,12 @@
 import { notFound } from "next/navigation";
+import { getMovie, type Movie } from "@/services/movies";
 
 export default async function Movie({params}:{params: Promise<{ id: string}>}) {
     const { id } = await params;
     
-    // Create an async function to fetch a single movie
-    /**
-     * const movie = await getMovie(params)
-    */
+    const data = await getMovie(id);
 
-    // Error handling, throws
-    /**
-     *  If something throws, the error.tsx should catch it and show a message
-    */
-
-    // Error handling - Not found
-    /**
-     * if(!movie) notFound() - Show the notfound view 
-    */
+    const { movie, reviews} = data;
 
     // Suspsense
     /**
@@ -26,7 +16,7 @@ export default async function Movie({params}:{params: Promise<{ id: string}>}) {
     return (
         <>
         <h1>Single movie:</h1>
-        <h1>Id: {id}</h1>
+        <h1>Movie name: {movie?.name}</h1>
         </>
     )
 }

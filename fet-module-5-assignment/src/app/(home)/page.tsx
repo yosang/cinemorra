@@ -1,4 +1,4 @@
-import getMovies, { type Movie } from "@/services/movies";
+import {getMovies, type Movie } from "@/services/movies";
 import Hero from "./components/Hero";
 import HomeSection from "./components/HomeSection";
 import MovieCard from "./components/MovieCard";
