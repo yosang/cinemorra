@@ -1,4 +1,21 @@
-.Layout {
+.layout {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    height: 100%;
+}
+.navLayout {
+    flex-grow: 1;
+}
+
+.links {
+    display: inline-flex;
+    flex-direction: column;
+    padding: var(--spacing-lg) var(--spacing-md);
+    gap: 5px;
+    font-size: 2rem;
+}
+
+.links:hover {
 }
