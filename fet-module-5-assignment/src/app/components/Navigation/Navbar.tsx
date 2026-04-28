@@ -5,8 +5,9 @@ import logo from "../../logo.png";
 import styles from "./Navbar.module.css";
 
 import { inter } from "../../../../public/fonts/Inter"; 
+import { ReactNode } from "react";
 
-export default function TopNavbar() {
+export default function TopNavbar({ children}:{children: ReactNode}) {
     return(
         <>
             <Navbar sticky={true}>
@@ -15,7 +16,7 @@ export default function TopNavbar() {
                     <h1 className={inter.className}>Cinemora</h1>
                 </Link>
                 <NavItems>
-                    <NavLink as={Link} href="/login">Log in</NavLink>
+                    {children}
                 </NavItems>
             </Navbar>
         </>
