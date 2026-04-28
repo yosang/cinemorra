@@ -1,10 +1,29 @@
 .layout {
     display: flex;
     gap: 20px;
+    height: 100%;
 }
 
 .details {
     display: flex;
     flex-direction: column;
+}
+
+.detailsHeader {
+    flex-direction: column;
+    display: flex;
+    gap: 20px;
+    flex: 1;
+}
+
+.reviewLayout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.reviews {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
 }

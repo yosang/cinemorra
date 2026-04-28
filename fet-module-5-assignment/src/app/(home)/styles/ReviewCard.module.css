@@ -1,0 +1,16 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius);
+    padding: var(--spacing-md) var(--spacing-md);
+    width: 100%;
+
+    gap: 20px;
+}
+
+.header {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+}
