@@ -14,6 +14,13 @@ type Props = {
 export default function MovieDetails({ name, description, image, reviews }:Props) {
     return(
         <div className={styles.layout}>
+            <Image 
+            className={styles.background}
+                src={image}
+                alt={name}
+                fill
+                style={{ objectFit: "cover" }}
+            />
             <div style={{ position: "relative", width: "300px", height: "auto" }}>
                 <Image 
                     src={image}
