@@ -1,7 +1,7 @@
 import {getMovies, type Movie } from "@/services/movies";
-import Hero from "./components/Hero";
-import HomeSection from "./components/HomeSection";
-import MovieCard from "./components/MovieCard";
+import Hero from "../components/Home/Hero";
+import HomeSection from "../components/Home/FeaturedSection";
+import MovieCard from "../components/Movie/MovieCard";
 import { HomeHeroImage } from "@/lib/constants";
 import { Button } from "@yosang/ui";
 import Link from "next/link";

@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import TopNavbar from "./components/Navbar";
-import styles from "./styles/Layout.module.css"
+import TopNavbar from "../components/Navigation/Navbar"
+import styles from "./layout.module.css"
 
 export default function HomeLayout({children}:{children: ReactNode}) {
     return <div className={styles.layout} >

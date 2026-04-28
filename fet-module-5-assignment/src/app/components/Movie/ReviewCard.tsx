@@ -1,5 +1,5 @@
 import { UserStar } from "lucide-react"
-import styles from "../styles/ReviewCard.module.css"
+import styles from "./ReviewCard.module.css"
 
 type Props = {
     name: string

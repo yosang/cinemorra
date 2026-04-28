@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "../styles/MovieDetails.module.css"
+import styles from "./MovieDetails.module.css"
 import { Button } from "@yosang/ui";
 import { Review } from "@/services/movies";
 import ReviewCard from "./ReviewCard";

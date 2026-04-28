@@ -2,7 +2,7 @@
 // @ts-expect-error - input is loaded correctly
 import { Button, Input } from "@yosang/ui"
 import styles from "./Movies.module.css"
-import MovieCard from "../components/MovieCard";
+import MovieCard from "../../components/Movie/MovieCard";
 import { ChangeEvent, KeyboardEvent, MutableRefObject, Suspense, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Movie } from "@/services/movies";

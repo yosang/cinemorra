@@ -1,5 +1,5 @@
 import { ReactNode, Suspense } from "react";
-import styles from "../styles/HomeSection.module.css"
+import styles from "./FeaturedSection.module.css"
 
 type Props = {
     headerText: string;

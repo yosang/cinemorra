@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "../styles/MovieCard.module.css"
+import styles from "./MovieCard.module.css"
 type Props = {
     image: string,
     overlayText: string
