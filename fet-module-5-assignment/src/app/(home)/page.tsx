@@ -2,7 +2,9 @@ import {getMovies, type Movie } from "@/services/movies";
 import Hero from "./components/Hero";
 import HomeSection from "./components/HomeSection";
 import MovieCard from "./components/MovieCard";
-import { HomeHeroImage } from "@/lib/constants";
+import { HomeHeroImage, MOVIES } from "@/lib/constants";
+import { Button } from "@yosang/ui";
+import Link from "next/link";
 
 export default async function HomeView() {
 
@@ -13,10 +15,11 @@ export default async function HomeView() {
         <Hero imageSource={HomeHeroImage}>
             <h2>Borrow movies and watch them for free</h2>
             <h3>Watch from anywhere as long as you have an interect connection.</h3>
+            <Link href="/movies"><Button>Watch for free</Button></Link>
         </Hero>
           
         <HomeSection headerText="Latest addition">
-            {movies.slice(-5).map((m:Movie) => (<MovieCard key={m.id} image={m.poster} overlayText={m.name}/>))}
+            {movies.slice(-5).map((m:Movie) => (<Link key={m.id} href={`movie/${m.id}`}><MovieCard image={m.poster} overlayText={m.name}/></Link>))}
         </HomeSection>
       </>
   )

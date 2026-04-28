@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 export interface Movie {
     id: string,
     name: string,
+    description: string,
     poster: string,
     genreId: number,
     studioId: number,
@@ -27,12 +28,10 @@ export type Review = {
 }
 
 export type SingleMovie = {
-    movies: Movie,
+    movie: Movie,
     reviews: Review[]
 }
 
-
-// Add return type
 export async function getMovies() {
     const res = await fetch(MOVIES, { next: { revalidate: 60 }});
     if(!res.ok) throw new Error("Something went wrong during fetch operation")
@@ -44,13 +43,12 @@ export async function getMovies() {
     return data ?? null;
 }
 
-// Add return type
 export async function getMovie(id: string) {
     const res = await fetch(`${MOVIES}/${id}`, { next: { revalidate: 60 }});
     
     if(!res.ok) throw new Error("Something went wrong during fetch operation")
         
-        const data:SingleMovie = await res.json();
+    const data:SingleMovie = await res.json();
         
     if(data && Object.keys(data).length < 1) notFound();
 

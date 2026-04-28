@@ -1,6 +1,6 @@
 import { ReactNode, Suspense } from "react";
 import Image from "next/image";
-import styles from "../styles/HomePage.module.css"
+import styles from "../styles/Hero.module.css"
 
 type HeroProps = {
     children: ReactNode,

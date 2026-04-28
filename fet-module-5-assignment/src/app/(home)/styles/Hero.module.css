@@ -4,12 +4,16 @@
     height: 60vh;
     overflow: hidden;
     z-index: 0;
+    border-radius: var(--radius);
 }
 
 .overlay {
     position: absolute;
     bottom: 0;
     color: var(--color-text);
-    padding: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-md);
     z-index: 2;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 10px;
 }
