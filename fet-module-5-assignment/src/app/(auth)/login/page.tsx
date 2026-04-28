@@ -8,6 +8,7 @@ import { Ungroup } from "lucide-react";
 import { FormEvent, useState } from "react";
 import authenticate from "../actions";
 import { useRouter } from "next/navigation";
+import { ADMIN_PATH } from "../../../lib/constants";
 
 export default function LoginView() {
     const router = useRouter();
@@ -21,11 +22,11 @@ export default function LoginView() {
         try {
             const result = await authenticate(formData)
             
-            if(result.success) router.push("/admin")
+            if(result.success) router.push(ADMIN_PATH)
 
         } catch(err) {
             // console.log(err); // Uncomment to debug, this will log to the browser, we dont wwant to expose any internals so we comment it out
-            
+
             setError("Internal Error")
         }
     }
@@ -50,7 +51,7 @@ export default function LoginView() {
                 />
                 <div className={styles.btn}>
                     <Button type="submit">Login</Button>
-                {error && <p style={{ color: "red" }}>{error}</p>}
+                  {error && <p style={{ color: "red" }}>{error}</p>}
                 </div>
             </form>
             </div>

@@ -11,7 +11,7 @@ export default function TopNavbar() {
         <>
             <Navbar sticky={true}>
                 <Link href="/" className={styles.logo}>
-                    <Image src={logo} alt="Navbar logo" width={100} height={100} />
+                    <Image src={logo} alt="Navbar logo" priority width={100} height={100} />
                     <h1 className={inter.className}>Cinemora</h1>
                 </Link>
                     <NavItems>

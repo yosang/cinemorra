@@ -12,8 +12,6 @@ export default async function authenticate(formData:FormData) {
         body: JSON.stringify(Object.fromEntries(formData))
     }) 
     
-    // console.log(res)
-
     if(!res.ok) throw new Error("Authentication login fetch failed")
     
     const data = await res.json();
