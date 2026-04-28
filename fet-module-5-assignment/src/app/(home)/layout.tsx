@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import TopNavbar from "../components/Navigation/Navbar"
+import NavigationBar from "../components/Navigation/Navbar"
 import styles from "./layout.module.css"
 import { NavLink } from "@yosang/ui";
 import Link from "next/link";
@@ -16,14 +16,14 @@ export default function HomeLayout({children}:{children: ReactNode}) {
     }
 
     return <div className={styles.layout} >
-                <TopNavbar>
+                <NavigationBar sticky={true}>
                     <NavLink 
                         as={Link} 
                         href={navData.path}
                     >
                         {navData.navItem}
                     </NavLink>
-                </TopNavbar>
+                </NavigationBar>
                 <main className={styles.main}>
                     {children}
                 </main>

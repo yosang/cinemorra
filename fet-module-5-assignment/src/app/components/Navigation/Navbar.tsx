@@ -5,12 +5,17 @@ import logo from "../../logo.png";
 import styles from "./Navbar.module.css";
 
 import { inter } from "../../../../public/fonts/Inter"; 
-import { ReactNode } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 
-export default function TopNavbar({ children}:{children: ReactNode}) {
+type Props = {
+    children: ReactNode;
+    sticky?: boolean
+} & HTMLAttributes<HTMLDivElement>;
+
+export default function NavigationBar({ children, sticky, ...props }:Props) {
     return(
         <>
-            <Navbar sticky={true}>
+            <Navbar sticky={sticky || false} {...props}>
                 <Link href="/" className={styles.logo}>
                     <Image src={logo} alt="Navbar logo" priority width={100} height={100} />
                     <h1 className={inter.className}>Cinemora</h1>

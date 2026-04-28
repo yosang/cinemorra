@@ -1,12 +1,12 @@
 import { ReactNode, Suspense } from "react";
-import styles from "./FeaturedSection.module.css"
+import styles from "./MovieGrid.module.css"
 
 type Props = {
     headerText: string;
     children: ReactNode;
 };
 
-export default function HomeSection( { headerText, children }:Props ) {
+export default function MovieGrid( { headerText, children }:Props ) {
     return(
         <div className={styles.layout}>
             <header>

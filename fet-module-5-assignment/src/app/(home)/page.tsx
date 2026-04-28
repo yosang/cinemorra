@@ -1,6 +1,6 @@
 import {getMovies, type Movie } from "@/services/movies";
 import Hero from "../components/Home/Hero";
-import HomeSection from "../components/Home/FeaturedSection";
+import MovieGrid from "../components/Movie/MovieGrid";
 import MovieCard from "../components/Movie/MovieCard";
 import { HomeHeroImage } from "@/lib/constants";
 import { Button } from "@yosang/ui";
@@ -19,11 +19,11 @@ export default async function HomeView() {
             <Link href="/movies"><Button>Watch for free</Button></Link>
         </Hero>
           
-        <HomeSection headerText="Latest addition">
+        <MovieGrid headerText="Featured">
             <Suspense fallback={<p>Loading...</p>}>
                 {movies.slice(-5).map((m:Movie) => (<Link key={m.id} href={`movie/${m.id}`}><MovieCard image={m.poster} overlayText={m.name}/></Link>))}
             </Suspense>
-        </HomeSection>
+        </MovieGrid>
       </>
   )
 }

@@ -1,7 +1,7 @@
 'use client'
 
 // @ts-expect-error
-import { Input, Button } from "@yosang/ui";
+import { Input, Button, NavLink } from "@yosang/ui";
 
 import styles from "./Login.module.css";
 import { Ungroup } from "lucide-react";
@@ -9,6 +9,7 @@ import { FormEvent, useState } from "react";
 import authenticate from "../actions";
 import { useRouter } from "next/navigation";
 import { ADMIN_PATH } from "../../../lib/constants";
+import Link from "next/link";
 
 export default function LoginView() {
     const router = useRouter();
@@ -34,7 +35,7 @@ export default function LoginView() {
     return <div className={styles.layout}>
             <form className={styles.form} onSubmit={handleSubmit} >
                 <div className={styles.logo}>
-                    <Ungroup size={100} />
+                    <NavLink as={Link} href="/"><Ungroup size={100} /></NavLink>
                 </div>
                 <Input 
                     required
@@ -51,7 +52,7 @@ export default function LoginView() {
                 />
                 <div className={styles.btn}>
                     <Button type="submit">Login</Button>
-                  {error && <p style={{ color: "red" }}>{error}</p>}
+                    {error && <p style={{ color: "red" }}>{error}</p>}
                 </div>
             </form>
             </div>

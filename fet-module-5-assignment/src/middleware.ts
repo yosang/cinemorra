@@ -33,5 +33,5 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
     // checks protected routes such as /admin/* and excludes checks for public routes, /, /movies, /movie/:id, /login
-    matcher: ['/admin/:path' ]
+    matcher: ['/admin/:path*' ]
 }
