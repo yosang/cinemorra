@@ -44,3 +44,8 @@
     filter: blur(20px);
     pointer-events: none;
 }
+
+.btns {
+    display: inline-flex;
+    gap: 10px;
+}

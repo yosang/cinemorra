@@ -15,7 +15,7 @@ export default function TopNavbar() {
                     <h1 className={inter.className}>Cinemora</h1>
                 </Link>
                     <NavItems>
-                        <NavLink as={Link} href="/admin">Admin</NavLink>
+                        <NavLink as={Link} href="/admin">Log in</NavLink>
                     </NavItems>
             </Navbar>
         </>

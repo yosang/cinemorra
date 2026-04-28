@@ -35,8 +35,9 @@ export default function MovieDetails({ name, description, image, reviews }:Props
                     <h2>{description}</h2>
                     <p>Genre: </p>
                     <p>Studio: </p>
-                    <div>
-                        <Button variant="secondary">Watch</Button>
+                    <div className={styles.btns}>
+                        <Button variant="primary">Watch</Button>
+                        <Button variant="secondary">Play trailer</Button>
                     </div>
                 </div>
             <div className={styles.reviewLayout}>
