@@ -2,9 +2,10 @@ import {getMovies, type Movie } from "@/services/movies";
 import Hero from "./components/Hero";
 import HomeSection from "./components/HomeSection";
 import MovieCard from "./components/MovieCard";
-import { HomeHeroImage, MOVIES } from "@/lib/constants";
+import { HomeHeroImage } from "@/lib/constants";
 import { Button } from "@yosang/ui";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export default async function HomeView() {
 
@@ -19,7 +20,9 @@ export default async function HomeView() {
         </Hero>
           
         <HomeSection headerText="Latest addition">
-            {movies.slice(-5).map((m:Movie) => (<Link key={m.id} href={`movie/${m.id}`}><MovieCard image={m.poster} overlayText={m.name}/></Link>))}
+            <Suspense fallback={<p>Loading...</p>}>
+                {movies.slice(-5).map((m:Movie) => (<Link key={m.id} href={`movie/${m.id}`}><MovieCard image={m.poster} overlayText={m.name}/></Link>))}
+            </Suspense>
         </HomeSection>
       </>
   )

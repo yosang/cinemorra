@@ -32,6 +32,7 @@ export type SingleMovie = {
     reviews: Review[]
 }
 
+
 export async function getMovies() {
     const res = await fetch(MOVIES, { next: { revalidate: 60 }});
     if(!res.ok) throw new Error("Something went wrong during fetch operation")

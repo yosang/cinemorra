@@ -13,6 +13,7 @@ export default function Hero({ children, imageSource }: HeroProps) {
                     <Image 
                       src={imageSource} 
                       fill
+                      priority
                       alt="Hero section image"
                       style={{ objectFit: "cover" }}
                     />

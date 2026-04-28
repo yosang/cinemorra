@@ -10,6 +10,11 @@ const nextConfig = {
                 protocol:"http",
                 hostname:"images.restapi.co.za",
                 pathname: "/**"
+            },
+            {
+                protocol:"https",
+                hostname:"picsum.photos",
+                pathname: "/**"
             }
         ]
     }
