@@ -3,3 +3,4 @@ export const HomeHeroImage= "https://images.unsplash.com/photo-1489599849927-2ee
 
 // ENV variables
 export const MOVIES=process.env.MOVIES ?? "http://localhost:3000"
+export const AUTH_LOGIN=process.env.AUTH_LOGIN ?? "http://localhost:3000"
