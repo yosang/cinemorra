@@ -1,15 +1,32 @@
 
 import { NextRequest, NextResponse } from "next/server";
-import { LOGIN_PATH } from "./lib/constants";
+import { AUTH_CHECK, LOGIN_PATH } from "./lib/constants";
 
-export function middleware(request: NextRequest) {
-    console.log("proxy hit")
-    
+export async function middleware(request: NextRequest) {
     const urlForRedirect = new URL(LOGIN_PATH, request.url);
     const responseWithRedirect = NextResponse.redirect(urlForRedirect);
-    const cookie = request.cookies.get("auth_token")?.value;
+    const auth_token = request.cookies.get("auth_token")?.value;
     
-    if(!cookie) return responseWithRedirect;
+    if(!auth_token) {
+        return responseWithRedirect
+    } else {
+        try {
+            const res = await fetch(AUTH_CHECK, {
+                method: "POST",
+                headers: { "Content-Type":"application/json", "Authorization":`Bearer ${auth_token}`},
+                body: JSON.stringify({
+                        name: crypto.randomUUID(),
+                    })
+            })
+    
+            if(!res.ok) {
+                responseWithRedirect.cookies.delete("auth_token");
+                return responseWithRedirect;
+            }
+        } catch(err) {
+            return responseWithRedirect;
+        }
+    };
 
     return NextResponse.next();    
 }
