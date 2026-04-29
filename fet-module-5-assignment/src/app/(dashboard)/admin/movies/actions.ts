@@ -1,7 +1,7 @@
 'use server'
 
 import { MOVIES } from "@/lib/constants"
-import { revalidatePath } from "next/cache"
+import { revalidateTag } from "next/cache"
 import { cookies } from "next/headers"
 
 export type StateProps = {
@@ -13,7 +13,7 @@ export type StateProps = {
 export async function AddMovie(initialState, formData:FormData ): Promise<StateProps> {
     const authToken = getAuthToken();
 
-    // Probably kick em out and redirect back to login
+    //! Probably kick em out and redirect back to login
     if(!authToken) return { error: "Unauthenticated"}
 
     const data = Object.fromEntries(formData)
@@ -32,8 +32,11 @@ export async function AddMovie(initialState, formData:FormData ): Promise<StateP
 
     if(!res.ok) return { error: "Internal Server Error"}
 
-    return { success: true}
+    
+    return successHandler();
 }
+
+
 
 // @ts-expect-error - initialState not being used
 export async function DeleteMovie(initialState, formData: FormData): Promise<StateProps> {
@@ -41,7 +44,7 @@ export async function DeleteMovie(initialState, formData: FormData): Promise<Sta
     
     if(!authToken) return { error: "Unauthenticated"}
 
-    const id = formData.get("id");
+    const id = formData.get("id") as string;
 
     const res = await fetch(`${MOVIES}/${id}`, {
         method: "DELETE",
@@ -50,12 +53,20 @@ export async function DeleteMovie(initialState, formData: FormData): Promise<Sta
 
     if(!res.ok) return { error: "Internal Server Erroir"};
 
-    revalidatePath("/admin/movies")
-
-    return { success: true}
+    return successHandler(id);
 }
 
 function getAuthToken() {
     const cookieStore = cookies();
     return cookieStore.get("auth_token")?.value;
+}
+
+const successHandler = (id?:string) => {
+    revalidateTag("movies");
+
+    if(id) {
+        revalidateTag(`movie:${id}`);
+    }
+
+    return { success: true}
 }

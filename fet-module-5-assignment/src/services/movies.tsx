@@ -40,7 +40,7 @@ export type GenreAndStudioObject = {
 }
 
 export async function getMovies() {
-    const res = await fetch(MOVIES, { next: { revalidate: 60 }});
+    const res = await fetch(MOVIES, { next: { revalidate: 60, tags: ["movies"] }});
     if(!res.ok) throw new Error(GENERIC_FETCH_ERROR_STRING)
     
     const { movies: { data } }:MoviesPayload = await res.json();
@@ -51,7 +51,7 @@ export async function getMovies() {
 }
 
 export async function getMovie(id: string) {
-    const res = await fetch(`${MOVIES}/${id}`, { next: { revalidate: 60 }});
+    const res = await fetch(`${MOVIES}/${id}`, { next: { revalidate: 60, tags: [`movie:${id}`] }});
     
     if(!res.ok) throw new Error(GENERIC_FETCH_ERROR_STRING)
         

@@ -26,7 +26,8 @@ export default function Movieclient({
         
         linkConfig,
         clickable,
-        data, overlayComponent,
+        data, 
+        overlayComponent,
         topMenu
     
     }:Props) {
@@ -50,12 +51,10 @@ export default function Movieclient({
     return <div className={styles.layout}>
                     <Searchbar ref={inputRef} data={movies} setter={setFilteredMovies} />
                     <ul className={styles.gridSection}>
-                        <Suspense fallback={<p>Loading...</p>}>
                             {list.map(m => linkConfig?.asLink 
                                 ? (<Link key={m.id} href={`${linkConfig.linkBase}/${m.id}`} ><MovieCard clickableOverlay={clickable} overlayComponent={overlayComponent ?? <p>{m.name}</p>} image={PLACEHOLDER_MOVIE_CARD_IMAGE} /></Link>)
                                 : (<MovieCard key={m.id} clickableOverlay={clickable} topMenuComponent={topMenu ? (<CardMenu setter={setMovies} itemId={m.id} />):undefined} overlayComponent={overlayComponent ?? <p>{m.name}</p>} image={m.poster} />)
                                 )}
-                        </Suspense>
                     </ul>
             </div>
 }

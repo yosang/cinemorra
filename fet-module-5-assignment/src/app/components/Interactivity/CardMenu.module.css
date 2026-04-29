@@ -47,4 +47,18 @@
 
 .error {
     color: red;
+    animation: pulse 0.8s ease-in-out 3
+}
+
+
+@keyframes pulse {
+    0% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.2;
+    }
 }
