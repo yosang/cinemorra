@@ -1,17 +1,11 @@
-import NavigationBar from "@/app/components/Navigation/Navbar";
-import { ADMIN_ADD_MOVIE_PATH } from "@/lib/constants";
-import { NavLink } from "@yosang/ui";
-import { Plus } from "lucide-react"
-import Link from "next/link";
+import Movieclient from "@/app/(home)/movies/MovieClient";
+import { getMovies } from "@/services/movies";
+import { Suspense } from "react";
+
 export default function AdminMoviesPage() {
-    return <div>
-                <div>
-                    <h1>Im a header</h1>
-                    <h1>Add new movie</h1>
-                     <NavLink as={Link} href={ADMIN_ADD_MOVIE_PATH}><Plus /></NavLink>
-                </div>
-                <div>
-                    <h1>Here is a grid layout</h1>
-                </div>
-            </div>
+    const movies = getMovies(); 
+
+    return <Suspense fallback={<p>Loading...</p>}>
+                    <Movieclient data={movies}/>
+            </Suspense>
 }

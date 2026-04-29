@@ -21,7 +21,7 @@ export default async function HomeView() {
           
         <MovieGrid headerText="Featured">
             <Suspense fallback={<p>Loading...</p>}>
-                {movies.slice(-5).map((m:Movie) => (<Link key={m.id} href={`movie/${m.id}`}><MovieCard image={m.poster} overlayText={m.name}/></Link>))}
+                {movies.slice(-5).map((m:Movie) => (<Link key={m.id} href={`movie/${m.id}`}><MovieCard image={m.poster} overlayComponent={<p>{m.name}</p>}/></Link>))}
             </Suspense>
         </MovieGrid>
       </>

@@ -2,10 +2,10 @@ import Image from "next/image";
 import styles from "./MovieCard.module.css"
 type Props = {
     image: string,
-    overlayText: string
+    overlayComponent: JSX.Element
 };
 
-export default function MovieCard({ image, overlayText }:Props) {
+export default function MovieCard({ image, overlayComponent }:Props) {
     return(
         <>
         <div className={styles.layout}>
@@ -18,7 +18,7 @@ export default function MovieCard({ image, overlayText }:Props) {
             />
             <div className={styles.overlayClickableArea}>
                 <div className={styles.overlayText}>
-                    <p>{overlayText}</p>
+                    {overlayComponent}
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 'use client'
-import styles from "./Movies.module.css"
+import styles from "./MovieClient.module.css"
 import MovieCard from "../../components/Movie/MovieCard";
 import { MutableRefObject, Suspense, useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -37,7 +37,7 @@ export default function Movieclient({data}:{data: Promise<Movie[]>}) {
                     </div>
                     <ul className={styles.gridSection}>
                         <Suspense fallback={<p>Loading...</p>}>
-                            {list.map(m => (<Link key={m.id} href={`movie/${m.id}`} ><MovieCard overlayText={m.name} image={m.poster} /></Link>))}
+                            {list.map(m => (<Link key={m.id} href={`movie/${m.id}`} ><MovieCard overlayComponent={<p>{m.name}</p>} image={m.poster} /></Link>))}
                         </Suspense>
                     </ul>
             </div>
