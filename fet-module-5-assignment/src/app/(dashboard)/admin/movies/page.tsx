@@ -1,3 +1,4 @@
+import NavigationBar from "@/app/components/Navigation/Navbar";
 import { ADMIN_ADD_MOVIE_PATH } from "@/lib/constants";
 import { NavLink } from "@yosang/ui";
 import { Plus } from "lucide-react"

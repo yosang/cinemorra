@@ -7,12 +7,21 @@ import NavigationBar from "@/app/components/Navigation/Navbar";
 import Link from "next/link";
 import { ADMIN_MOVIES_PATH, ADMIN_PATH } from "@/lib/constants";
 
+import Logo from "@/app/components/Navigation/Logo";
+import logo from "../../logo.png"
+
 export default function AdminLayout({children}:{children: ReactNode}) {
     
     return <HorizontalSplit
                 startSide={
                     <div className={styles.layout}>
-                        <NavigationBar logoStyle="stacked" className={styles.navLayout}>
+                        <NavigationBar 
+                            className={styles.navLayout}
+                            Logo={<Logo 
+                                      linkHref="/"
+                                      logoImg={logo}  
+                                />} 
+                        >
                             <div className={styles.links}>
                                 <NavLink as={Link} href={ADMIN_PATH}>Dashboard</NavLink>
                                 <NavLink as={Link} href={ADMIN_MOVIES_PATH}>Movies</NavLink>

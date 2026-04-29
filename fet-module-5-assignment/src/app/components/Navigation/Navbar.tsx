@@ -1,4 +1,4 @@
-import { Navbar, NavItems, NavLink} from "@yosang/ui";
+import { Navbar, NavItems} from "@yosang/ui";
 import { HTMLAttributes, ReactNode } from "react";
 
 type Props = {
