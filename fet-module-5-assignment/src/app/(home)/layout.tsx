@@ -5,6 +5,10 @@ import { NavLink } from "@yosang/ui";
 import Link from "next/link";
 import { ADMIN_PATH, LOGIN_PATH } from "@/lib/constants";
 import { cookies } from "next/headers";
+import { inter } from "../../../public/fonts/Inter"
+
+import Logo from "../components/Navigation/Logo";
+import logo from "../logo.png"
 
 export default function HomeLayout({children}:{children: ReactNode}) {
     const auth_cookie = cookies();
@@ -16,7 +20,7 @@ export default function HomeLayout({children}:{children: ReactNode}) {
     }
 
     return <div className={styles.layout} >
-                <NavigationBar sticky={true}>
+                <NavigationBar sticky={true} Logo={<Logo linkHref="/" logoImg={logo} logoFont={inter} logoText="Cinemora" logoStyle="inline" />} >
                     <NavLink 
                         as={Link} 
                         href={navData.path}

@@ -1,0 +1,13 @@
+.logoInline {
+    display: flex;
+    align-items: center;
+    color: var(--color-text);
+    text-decoration: none;
+}
+.logoStacked {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: var(--color-text);
+    text-decoration: none;
+}

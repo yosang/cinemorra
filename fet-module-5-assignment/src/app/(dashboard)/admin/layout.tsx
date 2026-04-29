@@ -24,7 +24,7 @@ export default function AdminLayout({children}:{children: ReactNode}) {
                     </div>
                 }
                 endSide={
-                <div>
+                <div className={styles.content}>
                     {children}
                 </div>}
             />
