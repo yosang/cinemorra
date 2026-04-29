@@ -4,33 +4,50 @@
 import { Button, Input } from "@yosang/ui"
 import { Form } from "lucide-react";
 import styles from "./AddMovieForm.module.css" 
-import AddMovie from "../actions";
+import AddMovie, { AddMovieStateProps } from "../actions";
+import { useFormState } from "react-dom";
 
 import { GenreAndStudioObject } from "@/services/movies";
+import { SubmitButton } from "@/app/components/Interactivity/SubmitButton";
+import { useEffect, useRef, useState } from "react";
 
 export default function AddMovieForm({ genreData, studioData }:{
     genreData: GenreAndStudioObject[]
     studioData: GenreAndStudioObject[]
 }) {
 
-    return <form className={styles.layout} action={AddMovie} >
+    const formRef = useRef<HTMLFormElement>(null);
+    const [state, formAction] = useFormState<AddMovieStateProps, FormData>(AddMovie, {})
+
+    useEffect(() => {
+
+        if(state?.success && formRef.current) {
+            formRef.current.reset();
+        }
+
+    }, [state?.success])
+
+    return <form ref={formRef} className={styles.layout} action={formAction} >
                 <div className={styles.logo}>
                     <Form size={100}/>
                     </div>
                 <Input 
+                    required
                     type="text"
                     name="name"
                     placeholder="Enter movie name"
                     labelText="Movie name"
                     />
                 <Input 
+                    required
                     type="text"
                     name="description"
                     placeholder="Enter movie description..."
                     labelText="Movie description"
                     />
                 <Input 
-                    type="text"
+                    required
+                    type="url"
                     name="imageLink"
                     placeholder="Enter movie image link"
                     labelText="Movie image link"
@@ -54,6 +71,12 @@ export default function AddMovieForm({ genreData, studioData }:{
                         {studioData.map(s => (<option key={s.id} value={s.id}>{s.name}</option>))}
                     </select>
                 </label>
-                <Button type="submit">Add movie</Button>
+                
+                <SubmitButton 
+                    successState={state.success}
+                    pendingLabel="Adding..."
+                    staticLabel="Add"
+                    />
+                {state?.error && <p>{state.error}</p>}
             </form>
 }

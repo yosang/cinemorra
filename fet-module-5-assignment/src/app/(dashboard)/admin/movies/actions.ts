@@ -1,14 +1,20 @@
 'use server'
 
-import { GENERIC_FETCH_ERROR_STRING, MOVIES } from "@/lib/constants"
+import { MOVIES } from "@/lib/constants"
 import { cookies } from "next/headers"
 
-export default async function AddMovie(formData: FormData ) {
+export type AddMovieStateProps = {
+    success?: boolean
+    error?:string
+}
+
+// @ts-expect-error - initialState not being used
+export default async function AddMovie(initialState, formData:FormData ): Promise<AddMovieStateProps> {
     const cookieStore = cookies();
     const auth_token = cookieStore.get("auth_token")?.value;
 
     // Probably kick em out and redirect back to login
-    if(!auth_token) throw new Error("Internal Error")
+    if(!auth_token) return { error: "Unauthenticated"}
 
     const data = Object.fromEntries(formData)
 
@@ -24,6 +30,7 @@ export default async function AddMovie(formData: FormData ) {
         })
     })
 
-    // console.log(res)
-    if(!res.ok) throw new Error(GENERIC_FETCH_ERROR_STRING)
+    if(!res.ok) return { error: "Internal Server Error"}
+
+    return { success: true}
 }
