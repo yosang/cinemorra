@@ -9,20 +9,20 @@ import { Movie } from "@/services/movies"
 
 type Props = {
     data: Movie[]
-    dispatchFN: Dispatch<SetStateAction<Movie[] | null>>
+    setter: Dispatch<SetStateAction<Movie[] | null>>
 }
 
-const Searchbar = forwardRef(({data, dispatchFN}:Props, ref) => {
+const Searchbar = forwardRef(function SearchBarComponent({data, setter}:Props, ref) {
     const [search, setSearch] = useState("");
 
     const handleSearchSubmit = () => {
         if(!search.trim()) return
-        dispatchFN(data.filter(m => m.name.toLowerCase().includes(search)))
+        setter(data.filter(m => m.name.toLowerCase().includes(search)))
     }
 
     const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
         if(e.target.value.trim() === "") {
-            dispatchFN(null);
+            setter(null);
         }
 
         setSearch(e.target.value)

@@ -1,26 +1,26 @@
 'use server'
 
 import { MOVIES } from "@/lib/constants"
+import { revalidatePath } from "next/cache"
 import { cookies } from "next/headers"
 
-export type AddMovieStateProps = {
+export type StateProps = {
     success?: boolean
     error?:string
 }
 
 // @ts-expect-error - initialState not being used
-export default async function AddMovie(initialState, formData:FormData ): Promise<AddMovieStateProps> {
-    const cookieStore = cookies();
-    const auth_token = cookieStore.get("auth_token")?.value;
+export async function AddMovie(initialState, formData:FormData ): Promise<StateProps> {
+    const authToken = getAuthToken();
 
     // Probably kick em out and redirect back to login
-    if(!auth_token) return { error: "Unauthenticated"}
+    if(!authToken) return { error: "Unauthenticated"}
 
     const data = Object.fromEntries(formData)
 
     const res = await fetch(MOVIES, {
         method: "POST",
-        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${auth_token}`},
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${authToken}`},
         body: JSON.stringify({
             name: data.name,
             description: data.description,
@@ -33,4 +33,29 @@ export default async function AddMovie(initialState, formData:FormData ): Promis
     if(!res.ok) return { error: "Internal Server Error"}
 
     return { success: true}
+}
+
+// @ts-expect-error - initialState not being used
+export async function DeleteMovie(initialState, formData: FormData): Promise<StateProps> {
+    const authToken = getAuthToken();
+    
+    if(!authToken) return { error: "Unauthenticated"}
+
+    const id = formData.get("id");
+
+    const res = await fetch(`${MOVIES}/${id}`, {
+        method: "DELETE",
+        headers: { "Authorization": `Bearer ${authToken}` }
+    })
+
+    if(!res.ok) return { error: "Internal Server Erroir"};
+
+    revalidatePath("/admin/movies")
+
+    return { success: true}
+}
+
+function getAuthToken() {
+    const cookieStore = cookies();
+    return cookieStore.get("auth_token")?.value;
 }

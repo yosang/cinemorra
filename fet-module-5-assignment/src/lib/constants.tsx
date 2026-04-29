@@ -8,6 +8,7 @@ export const ADMIN_EDIT_MOVIE_PATH = "/admin/movies/edit"
 
 // Other
 export const GENERIC_FETCH_ERROR_STRING = "Something went wrong during fetch operation"
+export const STYLE_CENTERED = { display:"flex", justifyContent:"center", alignItems:"center" }
 
 // ASSETS
 export const PLACEHOLDER_MOVIE_CARD_IMAGE = "http://images.restapi.co.za/posters/parasite.png"

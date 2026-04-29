@@ -25,6 +25,8 @@
 
 .deleteButton {
     width: 100%;
+    border: none;
+    background: transparent;
     color: var(--color-text);
     transition: all 0.5s ease;
 }
@@ -41,4 +43,8 @@
 .layout a:hover {
     cursor: pointer;
     color: var(--color-primary);
+}
+
+.error {
+    color: red;
 }

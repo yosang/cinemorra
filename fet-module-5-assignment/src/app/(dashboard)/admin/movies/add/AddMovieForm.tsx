@@ -1,15 +1,15 @@
 'use client'
 
 // @ts-ignore
-import { Button, Input } from "@yosang/ui"
+import { Input } from "@yosang/ui"
 import { Form } from "lucide-react";
 import styles from "./AddMovieForm.module.css" 
-import AddMovie, { AddMovieStateProps } from "../actions";
+import { AddMovie, StateProps } from "../actions";
 import { useFormState } from "react-dom";
 
 import { GenreAndStudioObject } from "@/services/movies";
 import { SubmitButton } from "@/app/components/Interactivity/SubmitButton";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export default function AddMovieForm({ genreData, studioData }:{
     genreData: GenreAndStudioObject[]
@@ -17,7 +17,7 @@ export default function AddMovieForm({ genreData, studioData }:{
 }) {
 
     const formRef = useRef<HTMLFormElement>(null);
-    const [state, formAction] = useFormState<AddMovieStateProps, FormData>(AddMovie, {})
+    const [state, formAction] = useFormState<StateProps, FormData>(AddMovie, {})
 
     useEffect(() => {
 

@@ -1,3 +1,5 @@
+import LoadingScreen from "@/app/components/Navigation/LoadingScreen";
+
 export default function Loading() {
-    return <p>Loading...</p>
+    return <LoadingScreen />
 }
