@@ -28,6 +28,6 @@
 
     background-color: var(--color-primary);
     bottom: 0;
-    color: var(--color-text);
+    color: var(--color-primary-text);
     width: 100%;
 }
