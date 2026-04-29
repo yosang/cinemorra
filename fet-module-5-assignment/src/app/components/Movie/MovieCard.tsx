@@ -1,14 +1,18 @@
 import Image from "next/image";
 import styles from "./MovieCard.module.css"
+
 type Props = {
-    image: string,
+    image: string
+    topMenuComponent?: JSX.Element | undefined
     overlayComponent: JSX.Element
+    clickableOverlay: boolean
 };
 
-export default function MovieCard({ image, overlayComponent }:Props) {
+export default function MovieCard({ image, topMenuComponent, overlayComponent, clickableOverlay = false }:Props) {
     return(
         <>
         <div className={styles.layout}>
+            {topMenuComponent && ( topMenuComponent )}
             <Image 
                 src={image}
                 fill
@@ -16,8 +20,8 @@ export default function MovieCard({ image, overlayComponent }:Props) {
                 alt="Movie card image"
                 style={{ objectFit: "cover"}}
             />
-            <div className={styles.overlayClickableArea}>
-                <div className={styles.overlayText}>
+            <div className={clickableOverlay ? styles.overlayClickableArea:""}>
+                <div className={clickableOverlay ? styles.overlayText: ""}>
                     {overlayComponent}
                 </div>
             </div>

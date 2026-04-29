@@ -1,0 +1,42 @@
+.layout {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-secondary);
+    padding: var(--spacing-sm) var(--spacing-sm);
+    z-index: 2;
+    
+    border-top-left-radius: var(--radius);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    display: flex;
+    gap:5;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.2s ease-in-out;
+}
+
+.layout:hover {
+    transform: scaleY(1.5) translateY(-16%) scaleX(1.5) translateX(-16%);
+}
+
+.deleteButton {
+    width: 100%;
+    color: var(--color-text);
+    transition: all 0.5s ease;
+}
+.deleteButton:hover {
+    cursor: pointer;
+    color: var(--color-primary);
+}
+
+.layout a {
+    color: var(--color-text);
+    transition: all 0.5s ease;
+}
+
+.layout a:hover {
+    cursor: pointer;
+    color: var(--color-primary);
+}
