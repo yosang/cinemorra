@@ -15,6 +15,11 @@ const nextConfig = {
                 protocol:"https",
                 hostname:"picsum.photos",
                 pathname: "/**"
+            },
+            {
+                protocol:"https", // Disable this when submitting
+                hostname:"**",
+                pathname: "/**"
             }
         ]
     }

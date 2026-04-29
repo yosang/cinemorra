@@ -12,10 +12,10 @@ export async function middleware(request: NextRequest) {
     } else {
         try {
             const res = await fetch(AUTH_CHECK, {
-                method: "POST",
+                method: "PATCH",
                 headers: { "Content-Type":"application/json", "Authorization":`Bearer ${auth_token}`},
                 body: JSON.stringify({
-                        name: crypto.randomUUID(),
+                        name: "Action",
                     })
             })
     

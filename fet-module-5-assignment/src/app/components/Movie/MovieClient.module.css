@@ -1,4 +1,4 @@
-cø.layout {
+.layout {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -8,12 +8,7 @@ cø.layout {
     padding: var(--spacing-sm) var(--spacing-md);
 }
 
-.searchBar{
-    display: flex;
-    gap: 20px;
-}
-
-.filter { 
+/* .filter { 
     display: flex;
     gap: 20px;
     align-self: end;
@@ -23,7 +18,7 @@ cø.layout {
     padding: 0 var(--spacing-sm);
     border-radius: var(--radius);
     border: none;
-}
+} */
 
 .gridSection {
     display: grid;

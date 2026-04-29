@@ -48,14 +48,14 @@ export default function Movieclient({
 
     return <div className={styles.layout}>
                     <Searchbar ref={inputRef} data={movies} dispatchFN={setFilteredMovies} />
-                    <div className={styles.filter}>
+                    {/* <div className={styles.filter}>
                         <p>Order by</p>
                         <select>
                             <option value="alphabetic">Alphabetic</option>
                             <option value="newst">Newst</option>
                             <option value="oldest">Oldest</option>
                         </select>
-                    </div>
+                    </div> */}
                     <ul className={styles.gridSection}>
                         <Suspense fallback={<p>Loading...</p>}>
                             {list.map(m => linkConfig?.asLink 

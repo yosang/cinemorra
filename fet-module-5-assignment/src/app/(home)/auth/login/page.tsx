@@ -4,11 +4,11 @@
 import { Input, Button, NavLink } from "@yosang/ui";
 
 import styles from "./Login.module.css";
-import { Ungroup } from "lucide-react";
+import { Form } from "lucide-react";
 import { FormEvent, useState } from "react";
 import authenticate from "../actions";
 import { useRouter } from "next/navigation";
-import { ADMIN_PATH } from "../../../lib/constants";
+import { ADMIN_PATH } from "../../../../lib/constants";
 import Link from "next/link";
 
 export default function LoginView() {
@@ -32,10 +32,9 @@ export default function LoginView() {
         }
     }
 
-    return <div className={styles.layout}>
-            <form className={styles.form} onSubmit={handleSubmit} >
+    return <form className={styles.layout} onSubmit={handleSubmit} >
                 <div className={styles.logo}>
-                    <NavLink as={Link} href="/"><Ungroup size={100} /></NavLink>
+                    <NavLink as={Link} href="/"><Form size={100} /></NavLink>
                 </div>
                 <Input 
                     required
@@ -55,5 +54,4 @@ export default function LoginView() {
                     {error && <p style={{ color: "red" }}>{error}</p>}
                 </div>
             </form>
-            </div>
 }

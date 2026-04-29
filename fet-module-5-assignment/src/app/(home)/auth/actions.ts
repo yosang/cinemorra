@@ -1,6 +1,6 @@
 'use server'
 import { revalidatePath } from "next/cache";
-import { AUTH_LOGIN } from "../../lib/constants"
+import { AUTH_LOGIN } from "../../../lib/constants"
 import { cookies } from "next/headers";
 
 export default async function authenticate(formData:FormData) {
