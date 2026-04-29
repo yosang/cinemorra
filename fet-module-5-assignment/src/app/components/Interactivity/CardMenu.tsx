@@ -8,11 +8,12 @@ import { Dispatch, SetStateAction, useEffect } from "react";
 import { Movie } from "@/services/movies";
 
 type Props = {
+    itemLabel: string
     itemId: string
     setter: Dispatch<SetStateAction<Movie[]>> | null
 };
 
-export default function CardMenu({ itemId, setter }:Props) {
+export default function CardMenu({ itemLabel, itemId, setter }:Props) {
     const [state, formAction] = useFormState(DeleteMovie, {});
     
     useEffect(() => {
@@ -24,12 +25,15 @@ export default function CardMenu({ itemId, setter }:Props) {
 
     }, [state.success])
 
-    return <div className={styles.layout}>
-                <Link href={`${ADMIN_EDIT_MOVIE_PATH}/${itemId}`}><SquarePen size={16}/></Link>
-                <form action={formAction}>
-                <button type="submit" name="id" value={itemId} className={styles.deleteButton}>
-                    {state?.error ? (<span className={styles.error} title="Internal error"><Info size={16}/></span>):(<Trash2 size={16}/>)}
-                </button>
-                </form>
+    return  <>
+            <div className={styles.layout}>
+                        <Link href={`${ADMIN_EDIT_MOVIE_PATH}/${itemId}`}><SquarePen size={16}/></Link>
+                        <form action={formAction}>
+                            <button type="submit" name="id" value={itemId} className={styles.deleteButton}>
+                                {state?.error ? (<span className={styles.error} title="Internal error"><Info size={16}/></span>):(<Trash2 size={16}/>)}
+                            </button>
+                        </form>
             </div>
+                <span className={styles.movieName}>{itemLabel}</span>
+            </>
 }
