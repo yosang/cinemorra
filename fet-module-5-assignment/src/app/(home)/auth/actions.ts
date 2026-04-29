@@ -1,10 +1,16 @@
 'use server'
 import { revalidatePath } from "next/cache";
-import { AUTH_LOGIN } from "../../../lib/constants"
+import { ADMIN_PATH, AUTH_LOGIN } from "../../../lib/constants"
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
-export default async function authenticate(formData:FormData) {
-    const cookieStorage = await cookies();
+export type AuthStateProps = {
+    success?: boolean,
+    error?: string,
+}
+
+export default async function authenticate(initialState: AuthStateProps, formData: FormData): Promise<AuthStateProps> {
+    const cookieStorage = cookies();
 
     const res = await fetch(AUTH_LOGIN, {
         method: "POST",
@@ -12,7 +18,7 @@ export default async function authenticate(formData:FormData) {
         body: JSON.stringify(Object.fromEntries(formData))
     }) 
     
-    if(!res.ok) throw new Error("Authentication login fetch failed")
+    if(!res.ok) return { error: "Invalid credentials" }
     
     const data = await res.json();
 
@@ -24,5 +30,5 @@ export default async function authenticate(formData:FormData) {
 
 
     revalidatePath("/", "layout");
-    return { success: true }
+    redirect(ADMIN_PATH)
 }

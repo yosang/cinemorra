@@ -1,38 +1,20 @@
 'use client'
 
 // @ts-expect-error
-import { Input, Button, NavLink } from "@yosang/ui";
+import { Input, NavLink } from "@yosang/ui";
 
 import styles from "./Login.module.css";
 import { Form } from "lucide-react";
-import { FormEvent, useState } from "react";
-import authenticate from "../actions";
-import { useRouter } from "next/navigation";
-import { ADMIN_PATH } from "../../../../lib/constants";
+import { useFormState } from "react-dom";
+import authenticate, { type AuthStateProps } from "../actions";
 import Link from "next/link";
+import { SubmitButton } from "@/app/components/Interactivity/SubmitButton";
+
 
 export default function LoginView() {
-    const router = useRouter();
-    const [error, setError] = useState<string | null>(null);
+    const [state, formAction] = useFormState<AuthStateProps, FormData>(authenticate, {});
 
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        const formData = new FormData(e.currentTarget);
-        
-        try {
-            const result = await authenticate(formData)
-            
-            if(result.success) router.push(ADMIN_PATH)
-
-        } catch(err) {
-            // console.log(err); // Uncomment to debug, this will log to the browser, we dont wwant to expose any internals so we comment it out
-
-            setError("Internal Error")
-        }
-    }
-
-    return <form className={styles.layout} onSubmit={handleSubmit} >
+    return <form className={styles.layout} action={formAction} >
                 <div className={styles.logo}>
                     <NavLink as={Link} href="/"><Form size={100} /></NavLink>
                 </div>
@@ -50,8 +32,11 @@ export default function LoginView() {
                     placeholder="Password"
                 />
                 <div className={styles.btn}>
-                    <Button type="submit">Login</Button>
-                    {error && <p style={{ color: "red" }}>{error}</p>}
+                    <SubmitButton 
+                        pendingLabel="Logging in..."
+                        staticLabel="Log in"
+                        />
+                    {state?.error && <p style={{ color: "red" }}>{state.error}</p>}
                 </div>
             </form>
 }

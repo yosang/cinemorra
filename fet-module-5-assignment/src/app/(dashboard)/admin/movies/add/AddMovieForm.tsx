@@ -3,12 +3,12 @@
 // @ts-ignore
 import { Button, Input } from "@yosang/ui"
 import { Form } from "lucide-react";
-import styles from "./AddMovieForm.module.css"
+import styles from "./AddMovieForm.module.css" 
 import AddMovie from "../actions";
 
 import { GenreAndStudioObject } from "@/services/movies";
 
-export default async function AddMovieForm({ genreData, studioData }:{
+export default function AddMovieForm({ genreData, studioData }:{
     genreData: GenreAndStudioObject[]
     studioData: GenreAndStudioObject[]
 }) {
@@ -32,7 +32,7 @@ export default async function AddMovieForm({ genreData, studioData }:{
                 <Input 
                     type="text"
                     name="imageLink"
-                    placeholder="Enter movie name"
+                    placeholder="Enter movie image link"
                     labelText="Movie image link"
                 />
                 <label className={styles.label}>
