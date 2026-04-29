@@ -1,9 +1,11 @@
-import AddMovieForm from "./AddMovieForm"
+import MovieForm from "@/app/components/Interactivity/MovieForm";
 import { getGenres, getStudios } from "@/services/movies";
+
+import { AddMovie } from "../actions";
 
 export default async function AdminMoviesPage() {
     const { genres: { data: genreData } } = await getGenres();
     const { studios: { data: studioData } } = await getStudios();
 
-    return <AddMovieForm genreData={genreData} studioData={studioData}/>
+    return <MovieForm serverActionFN={AddMovie} genreData={genreData} studioData={studioData}/>
 }

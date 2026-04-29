@@ -17,6 +17,11 @@ const nextConfig = {
                 pathname: "/**"
             },
             {
+                protocol:"http", // Disable this when submitting
+                hostname:"**",
+                pathname: "/**"
+            },
+            {
                 protocol:"https", // Disable this when submitting
                 hostname:"**",
                 pathname: "/**"
