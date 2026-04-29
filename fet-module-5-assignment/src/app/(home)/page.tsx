@@ -2,7 +2,7 @@ import {getMovies, type Movie } from "@/services/movies";
 import Hero from "../components/Home/Hero";
 import MovieGrid from "../components/Movie/MovieGrid";
 import MovieCard from "../components/Movie/MovieCard";
-import { HomeHeroImage } from "@/lib/constants";
+import { HomeHeroImage, PLACEHOLDER_MOVIE_CARD_IMAGE } from "@/lib/constants";
 import { Button } from "@yosang/ui";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -21,7 +21,7 @@ export default async function HomeView() {
           
         <MovieGrid headerText="Featured">
             <Suspense fallback={<p>Loading...</p>}>
-                {movies.slice(-5).map((m:Movie) => (<Link key={m.id} href={`movie/${m.id}`}><MovieCard clickableOverlay={true} image={m.poster} overlayComponent={<p>{m.name}</p>}/></Link>))}
+                {movies.slice(-5).map((m:Movie) => (<Link key={m.id} href={`movie/${m.id}`}><MovieCard clickableOverlay={true} image={PLACEHOLDER_MOVIE_CARD_IMAGE} overlayComponent={<p>{m.name}</p>}/></Link>))}
             </Suspense>
         </MovieGrid>
       </>

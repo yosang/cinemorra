@@ -7,6 +7,7 @@ import { Movie } from "@/services/movies";
 import { use } from "react";
 import Searchbar from "@/app/components/Interactivity/Searchbar";
 import CardMenu from "../Interactivity/CardMenu";
+import { PLACEHOLDER_MOVIE_CARD_IMAGE } from "@/lib/constants";
 
 interface LinkConfigProps {
     asLink: boolean
@@ -59,8 +60,8 @@ export default function Movieclient({
                     <ul className={styles.gridSection}>
                         <Suspense fallback={<p>Loading...</p>}>
                             {list.map(m => linkConfig?.asLink 
-                                ? (<Link key={m.id} href={`${linkConfig.linkBase}/${m.id}`} ><MovieCard clickableOverlay={clickable} overlayComponent={overlayComponent ?? <p>{m.name}</p>} image={m.poster} /></Link>)
-                                : (<MovieCard clickableOverlay={clickable} topMenuComponent={topMenu ? (<CardMenu itemId={m.id} />):undefined} overlayComponent={overlayComponent ?? <p>{m.name}</p>} image={m.poster} />)
+                                ? (<Link key={m.id} href={`${linkConfig.linkBase}/${m.id}`} ><MovieCard clickableOverlay={clickable} overlayComponent={overlayComponent ?? <p>{m.name}</p>} image={PLACEHOLDER_MOVIE_CARD_IMAGE} /></Link>)
+                                : (<MovieCard key={m.id} clickableOverlay={clickable} topMenuComponent={topMenu ? (<CardMenu itemId={m.id} />):undefined} overlayComponent={overlayComponent ?? <p>{m.name}</p>} image={PLACEHOLDER_MOVIE_CARD_IMAGE} />)
                                 )}
                         </Suspense>
                     </ul>
