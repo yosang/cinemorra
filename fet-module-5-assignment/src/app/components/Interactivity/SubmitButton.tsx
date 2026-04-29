@@ -23,7 +23,7 @@ export function SubmitButton({ successState, spinner = true, pendingLabel, stati
         : pending
         ? pendingLabel
         :
-        successState ? (<Check size={16}/>):staticLabel
+            successState ? (<Check size={16}/>):staticLabel
         }
         </Button>
 }

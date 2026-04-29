@@ -13,7 +13,7 @@ export type StateProps = {
 export async function AddMovie(initialState, formData:FormData ): Promise<StateProps> {
     const authToken = getAuthToken();
 
-    //! Probably kick em out and redirect back to login
+    //! Consider doing something else here
     if(!authToken) return { error: "Unauthenticated"}
 
     const data = Object.fromEntries(formData)
@@ -37,11 +37,11 @@ export async function AddMovie(initialState, formData:FormData ): Promise<StateP
 }
 
 
-
 // @ts-expect-error - initialState not being used
 export async function DeleteMovie(initialState, formData: FormData): Promise<StateProps> {
     const authToken = getAuthToken();
     
+    //! Consider doing something else here
     if(!authToken) return { error: "Unauthenticated"}
 
     const id = formData.get("id") as string;
@@ -56,6 +56,38 @@ export async function DeleteMovie(initialState, formData: FormData): Promise<Sta
     return successHandler(id);
 }
 
+// @ts-expect-error - initialState not being used
+export async function EditMovie(initialState, formData: FormData): Promise<StateProps> {
+    const authToken = getAuthToken();
+
+    //! Consider doing something else here
+    if(!authToken) return { error: "Unauthenticated"}
+
+    const id = formData.get("id") as string;
+    const data = Object.fromEntries(formData);
+    
+    const payload = JSON.stringify({
+            name: data.name,
+            description: data.description,
+            poster: data.imageLink,
+            genreId: Number(data.genre),
+            studioId: Number(data.studio)
+    })
+
+    const res = await fetch(`${MOVIES}/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type":"application/json","Authorization": `Bearer ${authToken}` },
+        body: payload
+    })
+
+    if(!res.ok) return { error: "Internal Server Error"}
+
+    return successHandler(id);
+}
+
+
+
+// Helper functions
 function getAuthToken() {
     const cookieStore = cookies();
     return cookieStore.get("auth_token")?.value;

@@ -7,5 +7,10 @@ export default async function AdminMoviesPage() {
     const { genres: { data: genreData } } = await getGenres();
     const { studios: { data: studioData } } = await getStudios();
 
-    return <MovieForm serverActionFN={AddMovie} genreData={genreData} studioData={studioData}/>
+    return <MovieForm 
+            pendingLabel="Adding..." 
+            staticLabel="Add"
+            serverActionFN={AddMovie} 
+            genreData={genreData} 
+            studioData={studioData}/>
 }

@@ -15,44 +15,60 @@ type Props = {
     movieData?: Movie
     genreData: GenreAndStudioObject[]
     studioData: GenreAndStudioObject[]
+    pendingLabel: string;
+    staticLabel: string;
     serverActionFN: (initialState: StateProps, formData: FormData) => Promise<StateProps>
 };
 
-export default function MovieForm({ movieData, genreData, studioData, serverActionFN }:Props) {
+export default function MovieForm({ movieData, pendingLabel, staticLabel, genreData, studioData, serverActionFN }:Props) {
 
     const formRef = useRef<HTMLFormElement>(null);
     const [state, formAction] = useFormState(serverActionFN, {})
+    const [success, setSuccess] = useState(false);
 
     useEffect(() => {
         if(state?.success && formRef.current) {
             formRef.current.reset();
+            setSuccess(true);
         }
+
+        const timer = setTimeout(() => setSuccess(false), 3000);
+
+        return () => clearTimeout(timer);
 
     }, [state?.success, movieData])
 
-    return <form ref={formRef} className={styles.layout} action={formAction} >
+    return <form 
+                // Little hack: When we send off our patch or create, the defaultValues become stale, so to force the form to re-mound we use the sucess state as key, once it changes, react remounts
+                key={`${movieData?.id ?? "create"}-${state?.success}`}  
+
+                ref={formRef} 
+                className={styles.layout} 
+                action={formAction} >
                 <div className={styles.logo}>
                     <Form size={100}/>
                     </div>
                 <Input 
                     required
                     defaultValue={movieData?.name}
+                    placeholder={movieData ?? "Movie name"}
                     type="text"
                     name="name"
                     labelText="Movie name"
                     />
-                    <label>
-                        <textarea 
-                        required
-                        defaultValue={movieData?.description}
-                        name="description"
-                        />
-                    </label>
+                <label>
+                    <textarea 
+                    required
+                    defaultValue={movieData?.description}
+                    name="description"
+                    />
+                </label>
                 <Input 
                     required
                     type="url"
                     name="imageLink"
                     defaultValue={movieData?.poster}
+                    placeholder={movieData ?? "Image link"}
                     labelText="Movie image link"
                     />
                 <label className={styles.label}>
@@ -77,10 +93,12 @@ export default function MovieForm({ movieData, genreData, studioData, serverActi
                     </select>
                 </label>
                 
+                <input type="hidden" name="id" value={movieData?.id} />
+
                 <SubmitButton 
-                    successState={state.success}
-                    pendingLabel="Saving..."
-                    staticLabel="Save"
+                    successState={success}
+                    pendingLabel={pendingLabel}
+                    staticLabel={staticLabel}
                     />
                 {state?.error && <p>{state.error}</p>}
             </form>
