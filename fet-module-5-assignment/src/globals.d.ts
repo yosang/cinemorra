@@ -1,6 +1,7 @@
 
 declare module "*.css"
 
+// My library currently doesnt export types, so we had to declare them here
 declare module "@yosang/ui" {
     import { AnchorHTMLAttributes, ElementType, ReactNode } from "react"
 

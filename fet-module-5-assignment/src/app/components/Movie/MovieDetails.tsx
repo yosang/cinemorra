@@ -4,18 +4,18 @@ import { Button } from "@yosang/ui";
 import { Review } from "@/services/movies";
 import ReviewCard from "./ReviewCard";
 
-type moviePayload = {
+export type MovieDetailsPayload = {
     id: number
     name: string
     description: string
     poster: string
-    genreName: string | undefined
-    studioName: string | undefined
+    genreName?: string
+    studioName?: string
     reviews: Review[]
 }
 
 type Props = {
-    payload: moviePayload
+    payload: MovieDetailsPayload
 };
 
 export default function MovieDetails({ payload }:Props) {
