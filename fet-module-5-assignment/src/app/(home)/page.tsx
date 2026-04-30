@@ -7,6 +7,8 @@ import { Button } from "@yosang/ui";
 import Link from "next/link";
 import { Suspense } from "react";
 
+
+
 export default async function HomeView() {
 
     const movies = await getMovies();

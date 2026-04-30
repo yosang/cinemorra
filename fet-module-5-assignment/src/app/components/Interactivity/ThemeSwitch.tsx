@@ -7,7 +7,7 @@ export default function ThemeSwitch() {
 
     const [currentTheme, setCurrentTheme] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark":"light");
 
-    const handleChange = (e) => {
+    const handleChange = () => {
         const changeValue = currentTheme === "dark" ? "light":"dark"
         document.documentElement.setAttribute("data-theme", changeValue)
         setCurrentTheme(changeValue)
