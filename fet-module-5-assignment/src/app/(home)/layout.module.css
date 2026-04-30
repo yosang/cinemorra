@@ -5,13 +5,12 @@
 }
 
 .nav {
-    background-color: rgba(20, 20, 20, 0.50);
+    background-color: var(--nav-bg);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 var(--spacing-md);
     height: 10%;
-    backdrop-filter: blur(8px);
 }
 
 .main {

@@ -21,7 +21,7 @@ test("MovieDetails page renders correct details", () => {
         name: "Forest Gump",
         description: "Never stops running",
         poster: "http://img.com/forestgump.png",
-        genreName: undefined,
+        genreName: "SomeGenre",
         studioName: "SomeStudio",
         reviews: []
     }
@@ -31,6 +31,25 @@ test("MovieDetails page renders correct details", () => {
     
     expect(screen.getByText(dummyMovie.name)).toBeInTheDocument();
     expect(screen.getByText(dummyMovie.description)).toBeInTheDocument();
+    
+    expect(screen.getByText(dummyMovie.genreName || "Unknown")).toBeInTheDocument();
+    expect(screen.getByText(dummyMovie.studioName || "Unknown")).toBeInTheDocument();
+})
+
+test("A missing genre display unknown", () => {
+
+    const dummyMovie: MovieDetailsPayload = {
+        id: 1,
+        name: "Forest Gump",
+        description: "Never stops running",
+        poster: "http://img.com/forestgump.png",
+        genreName: undefined,
+        studioName: "SomeStudio",
+        reviews: []
+    }
+
+    
+    render(<MovieDetails payload={dummyMovie} />)
     
     expect(screen.getByTestId("genre")).toHaveTextContent("Unknown");
     expect(screen.getByTestId("studio")).toHaveTextContent(dummyMovie.studioName || "Unknown");

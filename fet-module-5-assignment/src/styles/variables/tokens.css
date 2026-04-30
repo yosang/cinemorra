@@ -46,7 +46,7 @@
 
 [data-theme="light"] {
     --color-bg: var(--bg-light);
-    --nav-bg: var(--bg-light);
+    --nav-bg: var(--brand-secondary);
     --color-text: var(--text-dark);
 }
 
