@@ -4,15 +4,15 @@ import "@testing-library/jest-dom";
 import MovieDetails, { type MovieDetailsPayload } from "@/app/components/Movie/MovieDetails";
 
 // Mocks
-jest.mock("@yosang/ui", jest.fn(() => ({
+jest.mock("@yosang/ui", () => ({
     __esModule: true,
     Button: () =><button />
-})), { virtual: true })
+}), { virtual: true });
 
-jest.mock("next/image", jest.fn(() => ({ 
+jest.mock("next/image", () => ({ 
     __esModule:true,
     default: () => <img alt="mock image"/>
- })))
+ }));
 
 test("MovieDetails page renders correct details", () => {
 
@@ -31,8 +31,7 @@ test("MovieDetails page renders correct details", () => {
     
     expect(screen.getByText(dummyMovie.name)).toBeInTheDocument();
     expect(screen.getByText(dummyMovie.description)).toBeInTheDocument();
-    expect(screen.getByText("Unknown")).toBeInTheDocument();
-    expect(screen.getByText(dummyMovie.studioName || "Unknown")).toBeInTheDocument();
     
-    screen.debug();
+    expect(screen.getByTestId("genre")).toHaveTextContent("Unknown");
+    expect(screen.getByTestId("studio")).toHaveTextContent(dummyMovie.studioName || "Unknown");
 })

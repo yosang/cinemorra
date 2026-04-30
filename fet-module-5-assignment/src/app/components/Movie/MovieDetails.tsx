@@ -41,8 +41,8 @@ export default function MovieDetails({ payload }:Props) {
                 <div className={styles.detailsHeader}>
                     <h1>{payload.name}</h1>
                     <h2>{payload.description}</h2>
-                    <p><strong>Genre:</strong> {payload.genreName ?? "Unknown"}</p>
-                    <p><strong>Studio:</strong> {payload.studioName ?? "Unknown"}</p>
+                    <p><strong>Genre:</strong> <span data-testid="genre" >{payload.genreName ?? "Unknown"}</span></p>
+                    <p><strong>Studio:</strong> <span data-testid="studio" >{payload.studioName ?? "Unknown"}</span></p>
                     <div className={styles.btns}>
                         <Button variant="primary">Watch</Button>
                         <Button variant="secondary">Play trailer</Button>
