@@ -4,7 +4,9 @@
     align-items: center;
     padding: var(--spacing-sm) var(--spacing-md);
     height: 100%;
+    background-color: var(--nav-bg);
 }
+
 .navLayout {
     flex-grow: 1;
 }
@@ -19,4 +21,8 @@
 
 .content {
     padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.action {
+    padding: var(--spacing-md) 0;
 }

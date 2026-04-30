@@ -20,7 +20,7 @@ export default function HomeLayout({children}:{children: ReactNode}) {
     }
 
     return <div className={styles.layout} >
-                <NavigationBar sticky={true} Logo={<Logo linkHref="/" logoImg={logo} logoFont={inter} logoText="Cinemorra" logoStyle="inline" />} >
+                <NavigationBar className={styles.nav} sticky={true} Logo={<Logo linkHref="/" logoImg={logo} logoFont={inter} logoText="Cinemorra" logoStyle="inline" />} >
                     <NavLink 
                         as={Link} 
                         href={navData.path}

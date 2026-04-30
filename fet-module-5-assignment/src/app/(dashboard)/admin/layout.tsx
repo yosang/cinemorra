@@ -5,10 +5,12 @@ import styles from "./layout.module.css"
 import { Button, HorizontalSplit, NavLink } from "@yosang/ui";
 import NavigationBar from "@/app/components/Navigation/Navbar";
 import Link from "next/link";
-import { ADMIN_MOVIES_PATH, ADMIN_PATH } from "@/lib/constants";
+import { ADMIN_ADD_MOVIE_PATH, ADMIN_MOVIES_PATH, ADMIN_PATH } from "@/lib/constants";
 
 import Logo from "@/app/components/Navigation/Logo";
 import logo from "../../logo.png"
+import ThemeSwitch from "@/app/components/Interactivity/ThemeSwitch";
+import { Plus } from "lucide-react";
 
 export default function AdminLayout({children}:{children: ReactNode}) {
     
@@ -34,6 +36,11 @@ export default function AdminLayout({children}:{children: ReactNode}) {
                 }
                 endSide={
                 <div className={styles.content}>
+                    <div className={styles.nav}>
+                        <NavigationBar sticky={true} Logo={<ThemeSwitch />}>
+                                <Link href={ADMIN_ADD_MOVIE_PATH}><Button>Add new movie</Button></Link>
+                        </NavigationBar>
+                      </div>
                     {children}
                 </div>}
             />

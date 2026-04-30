@@ -1,6 +1,6 @@
 .layout {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
     padding: var(--spacing-sm) var(--spacing-md);
     gap: 20px;
@@ -13,6 +13,6 @@
 
 @media (min-width: 600px) {
     .layout {
-        flex-direction: row;
+        flex-direction: column;
     }
 }

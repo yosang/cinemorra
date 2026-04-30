@@ -7,6 +7,8 @@
     /* background */
     --color-bg: var(--bg-light);
 
+    --nav-bg: var(--bg-light);
+
     /* text */
     --color-text: var(--text-dark);
     --color-muted: var(--text-muted);
@@ -37,16 +39,19 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --color-bg: var(--bg-dark);
+        --nav-bg: var(--dark-not-black);
         --color-text: var(--text-light);
     }
 }
 
 [data-theme="light"] {
     --color-bg: var(--bg-light);
+    --nav-bg: var(--bg-light);
     --color-text: var(--text-dark);
 }
 
 [data-theme="dark"] {
     --color-bg: var(--bg-dark);
+    --nav-bg: var(--dark-not-black);
     --color-text: var(--text-light);
 }

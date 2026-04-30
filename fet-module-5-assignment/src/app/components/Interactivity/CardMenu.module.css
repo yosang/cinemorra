@@ -31,7 +31,7 @@
     border-top-right-radius: var(--radius);
     color: black;
     background-color: rgba(255, 255, 255, 0.90);
-    color: var(--color-text);
+    color: var(--color-secondary-text);
     filter: blur(0.2px);
     padding: var(--spacing-sm);
 }
@@ -44,7 +44,7 @@
     width: 100%;
     border: none;
     background: transparent;
-    color: var(--color-text);
+    color: var(--color-secondary-text);
     transition: all 0.5s ease;
 }
 .deleteButton:hover {
@@ -53,7 +53,7 @@
 }
 
 .layout a {
-    color: var(--color-text);
+    color: var(--color-secondary-text);
     transition: all 0.5s ease;
 }
 

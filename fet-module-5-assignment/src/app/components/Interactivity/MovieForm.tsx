@@ -32,7 +32,7 @@ export default function MovieForm({ movieData, pendingLabel, staticLabel, genreD
             setSuccess(true);
         }
 
-        const timer = setTimeout(() => setSuccess(false), 3000);
+        const timer = setTimeout(() => setSuccess(false), 2000);
 
         return () => clearTimeout(timer);
 
@@ -49,31 +49,36 @@ export default function MovieForm({ movieData, pendingLabel, staticLabel, genreD
                     <Form size={100}/>
                     </div>
                 <Input 
+                    disabled={success}
                     required
                     defaultValue={movieData?.name}
-                    placeholder={movieData ?? "Movie name"}
+                    placeholder={movieData ?? "Enter a movie name"}
                     type="text"
                     name="name"
                     labelText="Movie name"
                     />
                 <label>
                     <textarea 
+                    disabled={success}
                     required
                     defaultValue={movieData?.description}
+                    placeholder={movieData?.description ?? "Enter a movie description"}
                     name="description"
                     />
                 </label>
                 <Input 
+                    disabled={success}
                     required
                     type="url"
                     name="imageLink"
                     defaultValue={movieData?.poster}
-                    placeholder={movieData ?? "Image link"}
+                    placeholder={movieData ?? "Please provide a image poster link"}
                     labelText="Movie image link"
                     />
                 <label className={styles.label}>
                     Select a genre
                     <select
+                        disabled={success}
                         className={styles.select}
                         defaultValue={movieData?.genreId}
                         name="genre"
@@ -85,6 +90,7 @@ export default function MovieForm({ movieData, pendingLabel, staticLabel, genreD
                 <label className={styles.label}>
                     Select a studio
                     <select 
+                        disabled={success}
                         className={styles.select}
                         defaultValue={movieData?.studioId}
                         name="studio"

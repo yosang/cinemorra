@@ -19,11 +19,12 @@ export default function CardMenu({ itemLabel, itemId, setter }:Props) {
     useEffect(() => {
 
         if(state.success && setter) {
-            setter(prev => prev.filter(m => m.id !== itemId))
-
+            setter(prev => prev.filter(m => m.id !== Number(itemId)))
+            
+            //! We want to make sure we update the filtered list aswell
         }
 
-    }, [state.success])
+    }, [state.success, itemId, setter])
 
     return  <>
             <div className={styles.layout}>
