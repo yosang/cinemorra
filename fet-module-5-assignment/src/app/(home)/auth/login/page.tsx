@@ -10,7 +10,6 @@ import authenticate, { type AuthStateProps } from "../actions";
 import Link from "next/link";
 import { SubmitButton } from "@/app/components/Interactivity/SubmitButton";
 
-
 export default function LoginView() {
     const [state, formAction] = useFormState<AuthStateProps, FormData>(authenticate, {});
 

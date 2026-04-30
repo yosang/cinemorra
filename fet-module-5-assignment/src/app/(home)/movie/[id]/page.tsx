@@ -1,11 +1,14 @@
 import { getGenres, getMovie, getStudios } from "@/services/movies";
 import MovieDetails from "../../../components/Movie/MovieDetails";
 import { SingleMovie } from "@/services/types";
+import { notFound } from "next/navigation";
 
 export default async function Movie({params}:{params: Promise<{ id: string}>}) {
     const { id } = await params;
     
     const { movie, reviews }:SingleMovie = await getMovie(id);
+
+    if(!movie || !reviews) return notFound();
 
     const { genreId, studioId, createdAt, updatedAt, ...movieRestProps} = movie;
 
