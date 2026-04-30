@@ -1,13 +1,24 @@
-import { getMovie, type Movie } from "@/services/movies";
+import { getGenres, getMovie, getStudios, type Movie } from "@/services/movies";
 import MovieDetails from "../../../components/Movie/MovieDetails";
-import { PLACEHOLDER_MOVIE_CARD_IMAGE } from "@/lib/constants";
 
 export default async function Movie({params}:{params: Promise<{ id: string}>}) {
     const { id } = await params;
     
-    const data = await getMovie(id);
+    const { movie, reviews} = await getMovie(id);
+    const { genreId, studioId, createdAt, updatedAt, ...movieRestProps} = movie;
 
-    const { movie, reviews} = data;
+    const {genres: { data: genreData }} = await getGenres();
+    const {studios: { data: studioData }} = await getStudios();
+    
+    const genreName = genreData.find(g => g.id === movie.genreId)?.name
+    const studioName = studioData.find(s => s.id === movie.studioId)?.name
 
-    return <MovieDetails name={movie.name} description={movie.description} image={movie.poster} reviews={reviews}/>
+    const payload = {
+        ...movieRestProps,
+        genreName,
+        studioName,
+        reviews
+    }
+
+    return <MovieDetails payload={payload}/>
 }

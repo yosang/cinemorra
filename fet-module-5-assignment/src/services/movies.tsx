@@ -2,7 +2,7 @@ import { GENERIC_FETCH_ERROR_STRING, GENRE, MOVIES, STUDIO } from "@/lib/constan
 import { notFound } from "next/navigation";
 
 export interface Movie {
-    id: string,
+    id: number,
     name: string,
     description: string,
     poster: string,
@@ -39,6 +39,13 @@ export type GenreAndStudioObject = {
     updatedAt: string
 }
 
+export type GenreAndStudioResponse = { 
+    [key: string]: { 
+        data: GenreAndStudioObject[],
+        count: number    
+    }
+}
+
 export async function getMovies() {
     const res = await fetch(MOVIES, { next: { revalidate: 60, tags: ["movies"] }});
     if(!res.ok) throw new Error(GENERIC_FETCH_ERROR_STRING)
@@ -62,16 +69,16 @@ export async function getMovie(id: string) {
     return data ?? null;
 }
 
-export async function getGenres() {
-    const res = await fetch(GENRE)
+export async function getGenres(): Promise<GenreAndStudioResponse> {
+    const res = await fetch(GENRE, { next: { revalidate: 60}})
     
     if(!res.ok) throw new Error(GENERIC_FETCH_ERROR_STRING);
 
     return res.json() ?? null;
 }
 
-export async function getStudios() {
-    const res = await fetch(STUDIO)
+export async function getStudios(): Promise<GenreAndStudioResponse> {
+    const res = await fetch(STUDIO, { next: { revalidate: 60}})
     
     if(!res.ok) throw new Error(GENERIC_FETCH_ERROR_STRING);
 
