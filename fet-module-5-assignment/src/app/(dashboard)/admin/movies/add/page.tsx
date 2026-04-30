@@ -5,8 +5,10 @@ import { AddMovie } from "../actions";
 
 
 export default async function AdminMoviesPage() {
-    const { genres: { data: genreData } } = await getGenres();
-    const { studios: { data: studioData } } = await getStudios();
+    const [
+        { genres: { data: genreData } },
+        { studios: { data: studioData } }
+    ] = await Promise.all([await getGenres(), await getStudios()])
 
     return <MovieForm 
             pendingLabel="Adding..." 

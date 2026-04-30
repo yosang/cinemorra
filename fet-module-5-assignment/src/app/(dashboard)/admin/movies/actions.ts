@@ -13,7 +13,8 @@ export type StateProps = {
 export async function AddMovie(initialState, formData:FormData ): Promise<StateProps> {
     const authToken = getAuthToken();
 
-    //! Consider doing something else here
+    if(!MOVIES) throw new Error("Missing ENV variables")
+
     if(!authToken) return { error: "Unauthenticated"}
 
     const data = Object.fromEntries(formData)
@@ -41,7 +42,8 @@ export async function AddMovie(initialState, formData:FormData ): Promise<StateP
 export async function DeleteMovie(initialState, formData: FormData): Promise<StateProps> {
     const authToken = getAuthToken();
     
-    //! Consider doing something else here
+    if(!MOVIES) throw new Error("Missing ENV variables")
+
     if(!authToken) return { error: "Unauthenticated"}
 
     const id = formData.get("id") as string;
@@ -60,7 +62,7 @@ export async function DeleteMovie(initialState, formData: FormData): Promise<Sta
 export async function EditMovie(initialState, formData: FormData): Promise<StateProps> {
     const authToken = getAuthToken();
 
-    //! Consider doing something else here
+    if(!MOVIES) throw new Error("Missing ENV variables")
     if(!authToken) return { error: "Unauthenticated"}
 
     const id = formData.get("id") as string;

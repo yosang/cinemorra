@@ -5,10 +5,11 @@ import { EditMovie } from "../../actions";
 export default async function EditView({ params }:{params: Promise<{ id: string }>}) {
     const { id } = await params;
 
-    const {movie} = await getMovie(id)
-
-    const { genres: { data: genreData } } = await getGenres();
-    const { studios: { data: studioData } } = await getStudios();
+    const [ 
+        {movie},
+        { genres: { data: genreData } },
+        { studios: { data: studioData } }
+    ] = await Promise.all([await getMovie(id), await getGenres(), await getStudios()])
 
     return <MovieForm 
             pendingLabel="Updating..." 
