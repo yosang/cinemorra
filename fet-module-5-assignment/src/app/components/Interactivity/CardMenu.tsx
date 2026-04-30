@@ -9,7 +9,7 @@ import { Movie } from "@/services/movies";
 
 type Props = {
     itemLabel: string
-    itemId: string
+    itemId: number
     setter: Dispatch<SetStateAction<Movie[]>> | null
 };
 

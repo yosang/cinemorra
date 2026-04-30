@@ -7,7 +7,6 @@ import { Movie } from "@/services/movies";
 import { use } from "react";
 import Searchbar from "@/app/components/Interactivity/Searchbar";
 import CardMenu from "../Interactivity/CardMenu";
-import { PLACEHOLDER_MOVIE_CARD_IMAGE } from "@/lib/constants";
 
 interface LinkConfigProps {
     asLink: boolean

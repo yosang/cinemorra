@@ -2,7 +2,7 @@ import {getMovies, type Movie } from "@/services/movies";
 import Hero from "../components/Home/Hero";
 import MovieGrid from "../components/Movie/MovieGrid";
 import MovieCard from "../components/Movie/MovieCard";
-import { HomeHeroImage, PLACEHOLDER_MOVIE_CARD_IMAGE } from "@/lib/constants";
+import { HomeHeroImage } from "@/lib/constants";
 import { Button } from "@yosang/ui";
 import Link from "next/link";
 import { Suspense } from "react";
