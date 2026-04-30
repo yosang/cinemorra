@@ -33,3 +33,9 @@ export default async function authenticate(initialState: AuthStateProps, formDat
     revalidatePath("/", "layout");
     redirect(ADMIN_PATH)
 }
+
+export async function logout() {
+    const cookieStore = cookies();
+    cookieStore.delete("auth_token");
+    redirect("/");
+}

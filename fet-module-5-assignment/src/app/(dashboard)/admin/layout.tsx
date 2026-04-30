@@ -10,6 +10,7 @@ import { ADMIN_ADD_MOVIE_PATH, ADMIN_MOVIES_PATH, ADMIN_PATH } from "@/lib/const
 import Logo from "@/app/components/Navigation/Logo";
 import logo from "../../logo.png"
 import ThemeSwitch from "@/app/components/Interactivity/ThemeSwitch";
+import { logout } from "@/app/(home)/auth/actions";
 
 export default function AdminLayout({children}:{children: ReactNode}) {
     
@@ -29,7 +30,9 @@ export default function AdminLayout({children}:{children: ReactNode}) {
                             </div>
                         </NavigationBar>
                         <div className={styles.action}>
-                            <Button>Logout</Button>
+                            <form action={logout}>
+                                <Button type="submit">Logout</Button>
+                            </form>
                         </div>
                     </div>
                 }
