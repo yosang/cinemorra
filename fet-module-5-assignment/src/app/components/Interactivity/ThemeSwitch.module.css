@@ -3,4 +3,5 @@
     border: var(--radius);
     color: var(--color-secondary-text);
     font: inherit;
+    background-color: rgba(248, 223, 206, 0.95);
 }

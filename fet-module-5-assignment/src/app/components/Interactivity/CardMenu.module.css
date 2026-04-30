@@ -2,10 +2,8 @@
     position: absolute;
     left: 0;
     top: 0;
-    background-color: rgba(255, 255, 255, 0.90);
+    background-color: rgba(248, 223, 206, 0.95);
     
-    filter: blur(0.2px);
-
     padding: var(--spacing-sm) var(--spacing-sm);
     z-index: 2;
     
@@ -30,9 +28,8 @@
     z-index: 2;
     border-top-right-radius: var(--radius);
     color: black;
-    background-color: rgba(255, 255, 255, 0.90);
+    background-color: rgba(248, 223, 206, 0.95);
     color: var(--color-secondary-text);
-    filter: blur(0.2px);
     padding: var(--spacing-sm);
 }
 
