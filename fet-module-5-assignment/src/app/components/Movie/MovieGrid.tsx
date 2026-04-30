@@ -13,9 +13,7 @@ export default function MovieGrid( { headerText, children }:Props ) {
                 <h1>{headerText}</h1>
             </header>
             <div className={styles.row}>
-                <Suspense fallback={<p>Loading...</p>}>
                     {children}
-                </Suspense>
             </div>
         </div>
     )

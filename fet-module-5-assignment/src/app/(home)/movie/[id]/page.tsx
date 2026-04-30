@@ -1,10 +1,12 @@
-import { getGenres, getMovie, getStudios, type Movie } from "@/services/movies";
+import { getGenres, getMovie, getStudios } from "@/services/movies";
 import MovieDetails from "../../../components/Movie/MovieDetails";
+import { SingleMovie } from "@/services/types";
 
 export default async function Movie({params}:{params: Promise<{ id: string}>}) {
     const { id } = await params;
     
-    const { movie, reviews} = await getMovie(id);
+    const { movie, reviews }:SingleMovie = await getMovie(id);
+
     const { genreId, studioId, createdAt, updatedAt, ...movieRestProps} = movie;
 
     const {genres: { data: genreData }} = await getGenres();

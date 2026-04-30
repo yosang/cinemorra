@@ -1,12 +1,17 @@
-import Spinner from "@/app/components/Interactivity/Spinner";
 import Movieclient from "@/app/components/Movie/MovieClient";
 import { getMovies } from "@/services/movies"
-import { Suspense } from "react";
+import { MoviesPayload } from "@/services/types";
+import { notFound } from "next/navigation";
 
-export default function Movies() {
-    const movies = getMovies();
+export default async function Movies() {
+
+    const { movies : { data: movieData}}:MoviesPayload = await getMovies();      
+     
+    if(!movieData.length) return notFound();
     
-    return <Suspense fallback={<Spinner size={30}/>}>
-                <Movieclient data={movies} clickable={true} linkConfig={{asLink: true, linkBase:"/movie"}}/>
-            </Suspense>
+    return <Movieclient 
+                data={movieData} 
+                clickable 
+                linkConfig={{ asLink: true, linkBase:"/movie" }}/>
+            
 }

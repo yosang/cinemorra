@@ -1,12 +1,11 @@
 'use client'
 import styles from "./MovieClient.module.css"
 import MovieCard from "@/app/components/Movie/MovieCard";
-import { MutableRefObject, Suspense, useEffect, useRef, useState } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Movie } from "@/services/movies";
-import { use } from "react";
 import Searchbar from "@/app/components/Interactivity/Searchbar";
 import CardMenu from "../Interactivity/CardMenu";
+import { Movie } from "@/services/types";
 
 interface LinkConfigProps {
     asLink: boolean
@@ -15,26 +14,22 @@ interface LinkConfigProps {
 
 type Props= {
     linkConfig?: LinkConfigProps
-    data: Promise<Movie[]>
+    data: Movie[]
     overlayComponent?: JSX.Element
     clickable: boolean
     topMenu?: boolean
 }
 
 export default function Movieclient({
-        
         linkConfig,
         clickable,
         data, 
         overlayComponent,
         topMenu
-    
     }:Props) {
     const inputRef: MutableRefObject<HTMLInputElement| undefined > = useRef();
     
-    const fetchData = use(data);
-    
-    const [movies, setMovies] = useState(fetchData);
+    const [movies, setMovies] = useState(data);
     const [filteredMovies, setFilteredMovies] = useState<Movie[] | null>(null);
 
     const list = filteredMovies ?? movies;

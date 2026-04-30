@@ -1,8 +1,13 @@
+'use client'
 import Image from "next/image";
 import styles from "./MovieDetails.module.css"
 import { Button } from "@yosang/ui";
-import { Review } from "@/services/movies";
 import ReviewCard from "./ReviewCard";
+import { Review } from "@/services/types";
+import { useState } from "react";
+import Spinner from "../Interactivity/Spinner";
+import { STYLE_CENTERED } from "@/lib/constants";
+import ImageSkeleton from "../Skeletons/ImageSkeleton";
 
 export type MovieDetailsPayload = {
     id: number
@@ -19,6 +24,7 @@ type Props = {
 };
 
 export default function MovieDetails({ payload }:Props) {
+    const [ isLoading, setIsLoading ] = useState(true);
 
     return(
         <div className={styles.layout}>
@@ -30,11 +36,14 @@ export default function MovieDetails({ payload }:Props) {
                 style={{ objectFit: "cover" }}
             />
             <div style={{ position: "relative", width: "300px", height: "auto" }}>
+                {isLoading && <ImageSkeleton />}
                 <Image 
                     src={payload.poster}
                     alt={payload.name}
+                    priority
                     fill
                     style={{ objectFit: "cover" }}
+                    onLoad={() => setIsLoading(false)}
                 />
             </div>
             <div className={styles.details}>
