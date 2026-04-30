@@ -5,7 +5,7 @@ import styles from "./Searchbar.module.css"
 
 // @ts-ignore
 import { Input, Button } from "@yosang/ui"
-import { Movie } from "@/services/movies"
+import { Movie } from "@/services/types"
 
 type Props = {
     data: Movie[]

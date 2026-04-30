@@ -6,10 +6,10 @@ import { Form } from "lucide-react";
 import styles from "./MovieForm.module.css" 
 import { useFormState } from "react-dom";
 
-import { GenreAndStudioObject, Movie } from "@/services/movies";
 import { SubmitButton } from "@/app/components/Interactivity/SubmitButton";
 import { useEffect, useRef, useState } from "react";
 import { StateProps } from "@/app/(dashboard)/admin/movies/actions";
+import { GenreAndStudioObject, Movie } from "@/services/types";
 
 type Props = {
     movieData?: Movie
@@ -44,7 +44,8 @@ export default function MovieForm({ movieData, pendingLabel, staticLabel, genreD
 
                 ref={formRef} 
                 className={styles.layout} 
-                action={formAction} >
+                action={formAction} 
+            >
                 <div className={styles.logo}>
                     <Form size={100}/>
                     </div>
@@ -106,6 +107,6 @@ export default function MovieForm({ movieData, pendingLabel, staticLabel, genreD
                     pendingLabel={pendingLabel}
                     staticLabel={staticLabel}
                     />
-                {state?.error && <p>{state.error}</p>}
+                {state?.error && <p style={{ color: "red" }}>{state.error}</p>}
             </form>
 }

@@ -46,8 +46,21 @@ export default function Movieclient({
                     <Searchbar ref={inputRef} data={movies} setter={setFilteredMovies} />
                     <ul className={styles.gridSection}>
                             {list.map(m => linkConfig?.asLink 
-                                ? (<Link key={m.id} href={`${linkConfig.linkBase}/${m.id}`} ><MovieCard clickableOverlay={clickable} overlayComponent={overlayComponent ?? <p>{m.name}</p>} image={m.poster} /></Link>)
-                                : (<MovieCard key={m.id} clickableOverlay={clickable} topMenuComponent={topMenu ? (<CardMenu setter={setMovies} itemLabel={m.name} itemId={m.id} />):undefined} overlayComponent={overlayComponent ?? <p>{m.name}</p>} image={m.poster} />)
+                                ? (<Link 
+                                    key={m.id} 
+                                    href={`${linkConfig.linkBase}/${m.id}`} 
+                                    >
+                                    <MovieCard 
+                                    clickableOverlay={clickable} 
+                                    overlayComponent={overlayComponent ?? <p>{m.name}</p>} 
+                                    image={m.poster} /></Link>
+                                )
+                                : (<MovieCard 
+                                    key={m.id} 
+                                    clickableOverlay={clickable} 
+                                    topMenuComponent={topMenu ? (<CardMenu setter={setMovies} itemLabel={m.name} itemId={m.id} />):undefined} 
+                                    overlayComponent={overlayComponent ?? <p>{m.name}</p>} 
+                                    image={m.poster} />)
                                 )}
                     </ul>
             </div>

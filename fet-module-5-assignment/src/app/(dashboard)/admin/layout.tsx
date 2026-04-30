@@ -10,7 +10,6 @@ import { ADMIN_ADD_MOVIE_PATH, ADMIN_MOVIES_PATH, ADMIN_PATH } from "@/lib/const
 import Logo from "@/app/components/Navigation/Logo";
 import logo from "../../logo.png"
 import ThemeSwitch from "@/app/components/Interactivity/ThemeSwitch";
-import { Plus } from "lucide-react";
 
 export default function AdminLayout({children}:{children: ReactNode}) {
     

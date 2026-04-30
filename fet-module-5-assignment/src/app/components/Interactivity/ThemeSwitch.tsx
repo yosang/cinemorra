@@ -1,11 +1,11 @@
 'use client'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styles from "./ThemeSwitch.module.css"
-import { Moon, Sun } from "lucide-react";
+import { Popcorn, Sun } from "lucide-react";
 
 export default function ThemeSwitch() {
 
-    const [currentTheme, setCurrentTheme] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark":"light");
+    const [currentTheme, setCurrentTheme] = useState("");
 
     const handleChange = () => {
         const changeValue = currentTheme === "dark" ? "light":"dark"
@@ -13,7 +13,13 @@ export default function ThemeSwitch() {
         setCurrentTheme(changeValue)
     }
 
+    useEffect(() => {
+        const currentDocumentTheme = document.documentElement.getAttribute("data-theme");
+        const currentBrowserTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark":"light"
+        setCurrentTheme(currentDocumentTheme ?? currentBrowserTheme);
+    }, [])
+
     return <div className={styles.switcher} onClick={handleChange}>
-                <span>{currentTheme === "dark" ? <Sun className={styles.sun}/>:<Moon className={styles.moon}/>}</span>
+                <span>{currentTheme === "dark" ? <Sun className={styles.sun}/>:<Popcorn className={styles.moon}/>}</span>
             </div>
 }

@@ -10,6 +10,8 @@ export type AuthStateProps = {
 }
 
 export default async function authenticate(initialState: AuthStateProps, formData: FormData): Promise<AuthStateProps> {
+    if(!AUTH_LOGIN) throw new Error("Missing ENV variables");
+
     const cookieStorage = cookies();
 
     const res = await fetch(AUTH_LOGIN, {
@@ -27,7 +29,6 @@ export default async function authenticate(initialState: AuthStateProps, formDat
         sameSite: "strict",
         path: "/"
     })
-
 
     revalidatePath("/", "layout");
     redirect(ADMIN_PATH)

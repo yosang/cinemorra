@@ -5,7 +5,7 @@ import { ADMIN_EDIT_MOVIE_PATH } from "@/lib/constants";
 import { useFormState } from "react-dom";
 import { DeleteMovie } from "@/app/(dashboard)/admin/movies/actions";
 import { Dispatch, SetStateAction, useEffect } from "react";
-import { Movie } from "@/services/movies";
+import { Movie } from "@/services/types";
 
 type Props = {
     itemLabel: string

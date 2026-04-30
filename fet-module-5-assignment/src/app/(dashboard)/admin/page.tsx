@@ -1,17 +1,12 @@
+import { STYLE_CENTERED } from "@/lib/constants";
 import { getMovies } from "@/services/movies"
 
 export default async function AdminView() {
-    const movies = await getMovies();
-    const movieCount = movies.length
+    const { movies: { data }} = await getMovies();
+    const movieCount = data.length
     
-    const style = {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "80vh"
-    }
     
-    return <div style={style}>
+    return <div style={STYLE_CENTERED}>
             <h1 >There are currently {movieCount} movies in the database</h1>
             </div>
 }
