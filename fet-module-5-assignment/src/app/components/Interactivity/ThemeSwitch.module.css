@@ -10,8 +10,8 @@
     border: 1px solid var(--color-text);
     color: var(--color-text);
     font: inherit;
-    
-    background-color: var(--color-bg);
+
+    background-color: transparent;
 
     cursor: pointer;
     transition: border 0.3s ease;
@@ -22,14 +22,14 @@
 .sun {
     position: absolute;
     top: 5%;
-    left: 0;
+    left: 5%;
     animation: transition 0.2s ease reverse;
 }
 
 .moon {
     position: absolute;
     top: 5%;
-    right: 0;
+    right: 5%;
     animation: transition 0.2s ease forwards;
 }
 
@@ -39,10 +39,10 @@
 
 @keyframes transition {
     from { 
-        left: 0;
+        left: 5%;
      }
     to { 
-        right: 0;
+        right: 5%;
     }
 }
 

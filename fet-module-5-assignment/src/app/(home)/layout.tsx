@@ -9,6 +9,7 @@ import { inter } from "../../../public/fonts/Inter"
 
 import Logo from "../components/Navigation/Logo";
 import logo from "../logo.png"
+import ThemeSwitch from "../components/Interactivity/ThemeSwitch";
 
 export default function HomeLayout({children}:{children: ReactNode}) {
     const auth_cookie = cookies();
@@ -16,7 +17,7 @@ export default function HomeLayout({children}:{children: ReactNode}) {
     
     const navData = {
         path: isLoggedIn ? ADMIN_PATH:LOGIN_PATH,
-        navItem: isLoggedIn ? "Dashboard":"Log in"
+        navItem: isLoggedIn ? "Admin":"Log in"
     }
 
     return <div className={styles.layout} >
@@ -25,7 +26,9 @@ export default function HomeLayout({children}:{children: ReactNode}) {
                     sticky={true} 
                     Logo={<Logo linkHref="/" logoImg={logo} logoFont={inter} logoText="Cinemorra" logoStyle="inline" 
                 />} >
+                    <ThemeSwitch />
                     <NavLink 
+                        style={{ fontSize: "1.7rem"}}
                         as={Link} 
                         href={navData.path}
                     >
