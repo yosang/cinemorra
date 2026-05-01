@@ -20,6 +20,7 @@ export default function CardMenu({ itemLabel, itemId, setter }:Props) {
         if(toastRef.current) return;
 
         toastRef.current = toast(`Are you sure you want to delete ${itemLabel}?`, {
+            onDismiss: () => toastRef.current = null,
             action: {
                 label:"Delete",
                 onClick: () => {
@@ -42,9 +43,7 @@ export default function CardMenu({ itemLabel, itemId, setter }:Props) {
             },
             cancel: {
                 label:"Cancel",
-                onClick: () => {
-                    toastRef.current = null;
-                }
+                onClick: () => toastRef.current = null
             }
         })
     }
