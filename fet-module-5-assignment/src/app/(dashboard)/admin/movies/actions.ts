@@ -46,8 +46,7 @@ export async function DeleteMovie(initialState, formData: FormData): Promise<Sta
     const authToken = getAuthToken();
     
     if(!MOVIES) throw new Error("Missing ENV variables")
-
-    if(!authToken) return { error: "Unauthenticated"}
+    if(!authToken) throw new Error("Unauthenticated");
 
     const id = formData.get("id") as string;
 
@@ -56,7 +55,7 @@ export async function DeleteMovie(initialState, formData: FormData): Promise<Sta
         headers: { "Authorization": `Bearer ${authToken}` }
     })
 
-    if(!res.ok) return { error: "Internal Server Error"};
+    if(!res.ok) throw new Error("Internal Server Error");
 
     return successHandler(id);
 }

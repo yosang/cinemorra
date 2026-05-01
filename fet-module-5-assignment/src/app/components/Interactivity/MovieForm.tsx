@@ -10,6 +10,7 @@ import { SubmitButton } from "@/app/components/Interactivity/SubmitButton";
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { StateProps } from "@/app/(dashboard)/admin/movies/actions";
 import { GenreAndStudioObject, Movie } from "@/services/types";
+import { toast } from "sonner";
 
 type Props = {
     movieData?: Movie
@@ -37,6 +38,12 @@ export default function MovieForm({ movieData, pendingLabel, staticLabel, genreD
         if(state?.success && formRef.current) {
             formRef.current.reset();
             setSuccess(true);
+            
+            if(movieData) {
+                toast.success("Changes saved.")
+            } else {
+                toast.success("Movie added!")
+            }
         }
 
         const timer = setTimeout(() => setSuccess(false), 2000);
