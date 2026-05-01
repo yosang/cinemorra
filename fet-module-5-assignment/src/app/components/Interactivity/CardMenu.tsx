@@ -6,6 +6,7 @@ import { useFormState } from "react-dom";
 import { DeleteMovie } from "@/app/(dashboard)/admin/movies/actions";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { Movie } from "@/services/types";
+import { toast } from "sonner";
 
 type Props = {
     itemLabel: string
@@ -21,7 +22,15 @@ export default function CardMenu({ itemLabel, itemId, setter }:Props) {
         if(state.success && setter) {
             setter(prev => prev.filter(m => m.id !== Number(itemId)))
             
-            //! We want to make sure we update the filtered list aswell
+            toast.success("Movie was deleted successfully!", {
+                description: `Movie ${itemLabel} was deleted.`
+            })
+        }
+
+        if(state.error) {
+            toast.error("Failed to delete movie", {
+                description: `Failed to delete movie ${itemLabel}, please try again later.`
+            })
         }
 
     }, [state.success, itemId, setter])
