@@ -11,6 +11,7 @@ import Logo from "@/app/components/Navigation/Logo";
 import logo from "../../logo.png"
 import ThemeSwitch from "@/app/components/Interactivity/ThemeSwitch";
 import { logout } from "@/app/(home)/auth/actions";
+import { LogOut } from "lucide-react";
 
 export default function AdminLayout({children}:{children: ReactNode}) {
     
@@ -29,18 +30,29 @@ export default function AdminLayout({children}:{children: ReactNode}) {
                                 <NavLink as={Link} href={ADMIN_MOVIES_PATH}>Movies</NavLink>
                             </div>
                         </NavigationBar>
-                        <div className={styles.action}>
-                            <form action={logout}>
-                                <Button type="submit">Logout</Button>
-                            </form>
-                        </div>
+                        <footer className={styles.footer}>
+                                <p>© 2026 MIT License. All rights reserved.</p>
+                            </footer>
                     </div>
                 }
                 endSide={
                 <div className={styles.content}>
                     <div className={styles.nav}>
-                        <NavigationBar sticky={true} Logo={<ThemeSwitch />}>
-                                <Link href={ADMIN_ADD_MOVIE_PATH}><Button>Add new movie</Button></Link>
+                        <NavigationBar sticky={true} Logo={
+                                    <Link href={ADMIN_ADD_MOVIE_PATH}><Button>Add new movie</Button></Link>
+                                }>
+                                <div className={styles.navEnd}>
+                                <ThemeSwitch />
+                                 <form action={logout}>
+                                    <button 
+                                        type="submit"
+                                        title="Logout"
+                                        className={styles.logoutButton}
+                                        >
+                                            <LogOut size={30}/>
+                                        </button>
+                                    </form>
+                                </div>
                         </NavigationBar>
                       </div>
                     {children}

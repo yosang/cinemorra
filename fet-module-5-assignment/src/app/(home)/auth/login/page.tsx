@@ -9,9 +9,17 @@ import { useFormState } from "react-dom";
 import authenticate from "../actions";
 import Link from "next/link";
 import { SubmitButton } from "@/app/components/Interactivity/SubmitButton";
+import { MutableRefObject, useEffect, useRef } from "react";
 
 export default function LoginView() {
+    const inputRef:MutableRefObject<HTMLInputElement | undefined> = useRef();
     const [state, formAction] = useFormState(authenticate, {});
+
+    useEffect(() => {
+        if(inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, [])
 
     return <form 
                 className={styles.layout} 
@@ -21,6 +29,7 @@ export default function LoginView() {
                     <NavLink as={Link} href="/"><Form size={100} /></NavLink>
                 </div>
                 <Input 
+                    ref={inputRef}
                     required
                     name="username"
                     labelText="Username" 

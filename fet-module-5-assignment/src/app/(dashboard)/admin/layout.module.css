@@ -26,3 +26,21 @@
 .action {
     padding: var(--spacing-md) 0;
 }
+
+.navEnd {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.logoutButton {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    transition: color 0.3s ease-in-out;
+}
+
+.logoutButton:hover {
+    color: var(--color-accent);
+}

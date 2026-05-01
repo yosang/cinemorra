@@ -7,7 +7,7 @@ import styles from "./MovieForm.module.css"
 import { useFormState } from "react-dom";
 
 import { SubmitButton } from "@/app/components/Interactivity/SubmitButton";
-import { useEffect, useRef, useState } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { StateProps } from "@/app/(dashboard)/admin/movies/actions";
 import { GenreAndStudioObject, Movie } from "@/services/types";
 
@@ -22,9 +22,16 @@ type Props = {
 
 export default function MovieForm({ movieData, pendingLabel, staticLabel, genreData, studioData, serverActionFN }:Props) {
 
+    const inputRef: MutableRefObject<HTMLInputElement | undefined> = useRef();
     const formRef = useRef<HTMLFormElement>(null);
     const [state, formAction] = useFormState(serverActionFN, {})
     const [success, setSuccess] = useState(false);
+
+    useEffect(() => {
+        if(inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, [])
 
     useEffect(() => {
         if(state?.success && formRef.current) {
@@ -50,6 +57,7 @@ export default function MovieForm({ movieData, pendingLabel, staticLabel, genreD
                     <Form size={100}/>
                     </div>
                 <Input 
+                    ref={inputRef}
                     disabled={success}
                     required
                     defaultValue={movieData?.name}
