@@ -20,4 +20,4 @@ export const MOVIES=process.env.MOVIES ?? null;
 export const GENRE=process.env.GENRE ?? null
 export const STUDIO=process.env.STUDIO ?? null
 export const AUTH_LOGIN=process.env.AUTH_LOGIN ?? null
-export const AUTH_CHECK=process.env.AUTH_CHECK ?? null
+export const AUTH_CHECK_URL=process.env.AUTH_CHECK ?? null

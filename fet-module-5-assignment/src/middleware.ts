@@ -1,8 +1,11 @@
 
 import { NextRequest, NextResponse } from "next/server";
-import { AUTH_CHECK, LOGIN_PATH } from "./lib/constants";
+import { AUTH_CHECK_URL, LOGIN_PATH } from "./lib/constants";
 
 export async function middleware(request: NextRequest) {
+
+    if(!AUTH_CHECK_URL) throw new Error("Missing ENV variables")
+
     const urlForRedirect = new URL(LOGIN_PATH, request.url);
     const responseWithRedirect = NextResponse.redirect(urlForRedirect);
     const auth_token = request.cookies.get("auth_token")?.value;
@@ -11,7 +14,7 @@ export async function middleware(request: NextRequest) {
         return responseWithRedirect
     } else {
         try {
-            const res = await fetch(AUTH_CHECK, {
+            const res = await fetch(AUTH_CHECK_URL, {
                 method: "PATCH",
                 headers: { "Content-Type":"application/json", "Authorization":`Bearer ${auth_token}`},
                 body: JSON.stringify({
