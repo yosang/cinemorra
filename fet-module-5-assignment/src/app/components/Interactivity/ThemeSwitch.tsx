@@ -19,7 +19,10 @@ export default function ThemeSwitch() {
         setCurrentTheme(currentDocumentTheme ?? currentBrowserTheme);
     }, [])
 
-    return <div className={styles.switcher} onClick={handleChange}>
+    return <button 
+            aria-label="Toggle theme"
+            className={styles.switcher} 
+            onClick={handleChange}>
                 <span>{currentTheme === "dark" ? <Sun className={styles.sun}/>:<Popcorn className={styles.moon}/>}</span>
-            </div>
+            </button>
 }
