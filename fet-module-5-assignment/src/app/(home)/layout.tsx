@@ -28,7 +28,7 @@ export default function HomeLayout({children}:{children: ReactNode}) {
                 />} >
                     <ThemeSwitch />
                     <NavLink 
-                        style={{ fontSize: "1.7rem"}}
+                        style={{ fontSize: "1.5rem"}}
                         as={Link} 
                         href={navData.path}
                     >

@@ -1,4 +1,4 @@
-import { SquarePen , Trash2, Info} from "lucide-react";
+import { SquarePen , Trash2 } from "lucide-react";
 import styles from "./CardMenu.module.css"
 import Link from "next/link";
 import { ADMIN_EDIT_MOVIE_PATH } from "@/lib/constants";
@@ -42,7 +42,9 @@ export default function CardMenu({ itemLabel, itemId, setter }:Props) {
             },
             cancel: {
                 label:"Cancel",
-                onClick: () => null
+                onClick: () => {
+                    toastRef.current = null;
+                }
             }
         })
     }
