@@ -7,8 +7,6 @@ export default async function AdminMoviesPage() {
     
 const { movies : { data: movieData}}:MoviesPayload = await getMovies(); 
         
-        console.log(movieData)
-
     return <div className={styles.layout}>
                 <Movieclient data={movieData} topMenu={true} clickable={false} linkConfig={{ asLink: false}} />
           </div>
