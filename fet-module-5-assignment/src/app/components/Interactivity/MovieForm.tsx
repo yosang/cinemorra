@@ -61,8 +61,8 @@ export default function MovieForm({ movieData, pendingLabel, staticLabel, genreD
                 action={formAction} 
             >
                 <div className={styles.logo}>
-                    <Form size={100}/>
-                    </div>
+                    <Form aria-hidden={true} size={100}/>
+                </div>
                 <Input 
                     ref={inputRef}
                     disabled={success}
@@ -71,17 +71,16 @@ export default function MovieForm({ movieData, pendingLabel, staticLabel, genreD
                     placeholder={movieData ?? "Enter a movie name"}
                     type="text"
                     name="name"
-                    labelText="Movie name"
+                    aria-label="Movie name"
                     />
-                <label>
-                    <textarea 
+                <textarea 
+                    aria-label="Movie description"
                     disabled={success}
                     required
                     defaultValue={movieData?.description}
                     placeholder={movieData?.description ?? "Enter a movie description"}
                     name="description"
                     />
-                </label>
                 <Input 
                     disabled={success}
                     required
@@ -89,7 +88,7 @@ export default function MovieForm({ movieData, pendingLabel, staticLabel, genreD
                     name="imageLink"
                     defaultValue={movieData?.poster}
                     placeholder={movieData ?? "Please provide a image poster link"}
-                    labelText="Movie image link"
+                    aria-label="Movie image link"
                     />
                 <label className={styles.label}>
                     Select a genre
