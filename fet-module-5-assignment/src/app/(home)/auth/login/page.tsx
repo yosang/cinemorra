@@ -26,28 +26,31 @@ export default function LoginView() {
                 action={formAction} 
             >
                 <div className={styles.logo}>
-                    <NavLink as={Link} href="/"><Form size={100} /></NavLink>
+                    <NavLink as={Link} href="/" aria-label="Go to homepage" ><Form aria-hidden={true} size={100} /></NavLink>
                 </div>
+                <h1>Log in</h1>
                 <Input 
                     ref={inputRef}
                     required
                     name="username"
-                    labelText="Username" 
                     placeholder="Username"
-            />
+                    autoComplete="username"
+                    aria-label="Username"
+                    />
                 <Input 
                     required
                     name="password"
                     type="password"
-                    labelText="password" 
                     placeholder="Password"
+                    autoComplete="current-password"
+                    aria-label="Password"
                 />
                 <div className={styles.btn}>
                     <SubmitButton 
                         pendingLabel="Logging in..."
                         staticLabel="Log in"
                         />
-                    {state?.error && <p style={{ color: "red" }}>{state.error}</p>}
+                    {state?.error && <p role="alert" style={{ color: "red" }}>{state.error}</p>}
                 </div>
             </form>
 }

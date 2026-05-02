@@ -42,6 +42,7 @@ This application was built using Node version `v22.22.0` with npm version `10.9.
 - `next` - Fullstack React framework.
 - `react` - SPA react library.
 - `react-dom` - React DOM library.
+- `sonner` - Toast component library.
 
 ## Development dependencies
 

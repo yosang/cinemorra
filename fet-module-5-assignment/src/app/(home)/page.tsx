@@ -26,7 +26,11 @@ export default async function HomeView() {
           
         <MovieGrid headerText="Featured">
             {featuredMovies.map((m) => (
-                <Link key={m.id} href={`/movie/${m.id}`}>
+                <Link 
+                    key={m.id} 
+                    href={`/movie/${m.id}`}
+                    aria-label={`View details for ${m.name}`}
+                    >
                     <MovieCard 
                         clickableOverlay
                         image={m.poster} 

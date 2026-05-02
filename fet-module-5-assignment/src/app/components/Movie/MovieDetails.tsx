@@ -5,8 +5,6 @@ import { Button } from "@yosang/ui";
 import ReviewCard from "./ReviewCard";
 import { Review } from "@/services/types";
 import { useState } from "react";
-import Spinner from "../Interactivity/Spinner";
-import { STYLE_CENTERED } from "@/lib/constants";
 import ImageSkeleton from "../Skeletons/ImageSkeleton";
 
 export type MovieDetailsPayload = {

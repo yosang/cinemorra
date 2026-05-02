@@ -8,17 +8,11 @@
     padding: var(--spacing-sm) var(--spacing-md);
 }
 
-/* .filter { 
-    display: flex;
-    gap: 20px;
-    align-self: end;
+.layout li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
-
-.filter select {
-    padding: 0 var(--spacing-sm);
-    border-radius: var(--radius);
-    border: none;
-} */
 
 .gridSection {
     display: grid;

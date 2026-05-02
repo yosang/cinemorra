@@ -23,6 +23,10 @@ export default function ThemeSwitch() {
             aria-label="Toggle theme"
             className={styles.switcher} 
             onClick={handleChange}>
-                <span>{currentTheme === "dark" ? <Sun className={styles.sun}/>:<Popcorn className={styles.moon}/>}</span>
+                <span>
+                    {currentTheme === "dark" 
+                    ? <Sun aria-hidden={true}className={styles.sun}/>
+                    : <Popcorn aria-hidden={true}className={styles.moon}/>}
+                </span>
             </button>
 }

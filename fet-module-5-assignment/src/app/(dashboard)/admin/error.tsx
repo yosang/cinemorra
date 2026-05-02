@@ -18,10 +18,10 @@ export default function Error({
 
     return (
         <>
-        <div style={STYLE_CENTERED}>
+        <div role="alert" style={STYLE_CENTERED}>
             <h2>Something went wrong!</h2>
-            <h3>{error.message}</h3>
-            <Button onClick={() => retry()}>Try again</Button>
+            <h3 id="errorMessage" >{error.message}</h3>
+            <Button aria-describedby="errorMessage" onClick={() => retry()}>Try again</Button>
         </div>
         </>
     )

@@ -50,9 +50,16 @@ export default function CardMenu({ itemLabel, itemId, setter }:Props) {
 
     return  <>
             <div className={styles.layout}>
-                        <Link href={`${ADMIN_EDIT_MOVIE_PATH}/${itemId}`}><SquarePen size={16}/></Link>
-                        <button className={styles.deleteButton} onClick={handleDeleteSubmit}>
-                            <Trash2  size={16}/>
+                        <Link 
+                            aria-label="Edit movie"
+                            href={`${ADMIN_EDIT_MOVIE_PATH}/${itemId}`}
+                            ><SquarePen aria-hidden={true} size={16}/></Link>
+                        <button 
+                            aria-label="Delete movie"
+                            className={styles.deleteButton} 
+                            onClick={handleDeleteSubmit}
+                        >
+                            <Trash2 aria-hidden={true} size={16}/>
                         </button>
                         
             </div>

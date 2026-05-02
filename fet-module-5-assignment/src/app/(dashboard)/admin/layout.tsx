@@ -46,10 +46,11 @@ export default function AdminLayout({children}:{children: ReactNode}) {
                                  <form action={logout}>
                                     <button 
                                         type="submit"
+                                        aria-label="logout"
                                         title="Logout"
                                         className={styles.logoutButton}
                                         >
-                                            <LogOut size={30}/>
+                                            <LogOut aria-hidden={true} size={30}/>
                                         </button>
                                     </form>
                                 </div>

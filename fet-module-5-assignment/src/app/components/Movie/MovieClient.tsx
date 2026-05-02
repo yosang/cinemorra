@@ -39,7 +39,7 @@ export default function Movieclient({
         const prevMovies = prevMoviesRef.current;
 
         // This useEffect ensures that if we delete a movie while being in a search state, we update the filtered list aswell so we can
-        // immediately see the deletion happen in the filtered list aswell, this is because filteredMovies is a derived
+        // immediately see the deletion happen in the filtered list, this is because filteredMovies is a derived
         // state of the movies state and not the real source of truth.
         // if prevMovies is no longer equal in reference to movies and we have filtered list
         // We want to update the filtered list with a new list where we only keep the movies in the filtered list whose id still exists in
@@ -50,7 +50,7 @@ export default function Movieclient({
 
         prevMoviesRef.current = movies;
 
-    }, [movies])
+    }, [movies, filteredMovies])
 
     useEffect(() => {
 
@@ -64,21 +64,26 @@ export default function Movieclient({
                     <Searchbar ref={inputRef} data={movies} setter={setFilteredMovies} />
                     <ul className={styles.gridSection}>
                             {list.map(m => linkConfig?.asLink 
-                                ? (<Link 
-                                    key={m.id} 
-                                    href={`${linkConfig.linkBase}/${m.id}`} 
-                                    >
-                                    <MovieCard 
-                                    clickableOverlay={clickable} 
-                                    overlayComponent={overlayComponent ?? <p>{m.name}</p>} 
-                                    image={m.poster} /></Link>
+                                ? (<li key={m.id}>
+                                        <Link 
+                                        href={`${linkConfig.linkBase}/${m.id}`} 
+                                        >
+                                        <MovieCard 
+                                        clickableOverlay={clickable} 
+                                        overlayComponent={overlayComponent ?? <p>{m.name}</p>} 
+                                        image={m.poster} />
+                                        </Link>
+                                    </li>
                                 )
-                                : (<MovieCard 
-                                    key={m.id} 
-                                    clickableOverlay={clickable} 
-                                    topMenuComponent={topMenu ? (<CardMenu setter={setMovies} itemLabel={m.name} itemId={m.id} />):undefined} 
-                                    overlayComponent={overlayComponent ?? <p>{m.name}</p>} 
-                                    image={m.poster} />)
+                                : (<li key={m.id}>
+                                        <MovieCard 
+                                        clickableOverlay={clickable} 
+                                        topMenuComponent={topMenu ? (<CardMenu setter={setMovies} itemLabel={m.name} itemId={m.id} />):undefined} 
+                                        overlayComponent={overlayComponent ?? <p>{m.name}</p>} 
+                                        image={m.poster} 
+                                        />
+                                    </li>
+                                    )
                                 )}
                     </ul>
             </div>
