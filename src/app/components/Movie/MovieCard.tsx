@@ -25,7 +25,7 @@ export default function MovieCard({ image, topMenuComponent, overlayComponent, c
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 alt="Movie card image"
                 style={{ objectFit: "cover"}}
-                onLoad={() => setIsLoading(false)}
+                onLoadingComplete={() => setIsLoading(false)}
             />
             <div className={clickableOverlay ? styles.overlayClickableArea:""}>
                 <div className={clickableOverlay ? styles.overlayText: ""}>

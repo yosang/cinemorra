@@ -41,7 +41,7 @@ export default function MovieDetails({ payload }:Props) {
                     priority
                     fill
                     style={{ objectFit: "cover" }}
-                    onLoad={() => setIsLoading(false)}
+                    onLoadingComplete={() => setIsLoading(false)}
                 />
             </div>
             <div className={styles.details}>
