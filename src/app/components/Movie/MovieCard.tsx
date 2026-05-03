@@ -12,7 +12,7 @@ type Props = {
 };
 
 export default function MovieCard({ image, topMenuComponent, overlayComponent, clickableOverlay = false }:Props) {
-    const [isLoading, setIsLoading ] = useState(true)
+    const [isLoading, setIsLoading] = useState(true);
 
     return(
         <>
@@ -24,8 +24,8 @@ export default function MovieCard({ image, topMenuComponent, overlayComponent, c
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 alt="Movie card image"
-                style={{ objectFit: "cover"}}
                 onLoadingComplete={() => setIsLoading(false)}
+                style={{ objectFit: "cover"}}
             />
             <div className={clickableOverlay ? styles.overlayClickableArea:""}>
                 <div className={clickableOverlay ? styles.overlayText: ""}>

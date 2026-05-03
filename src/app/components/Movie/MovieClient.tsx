@@ -1,11 +1,12 @@
 'use client'
 import styles from "./MovieClient.module.css"
 import MovieCard from "@/app/components/Movie/MovieCard";
-import { MutableRefObject, useEffect, useRef, useState } from "react";
+import { MutableRefObject, useEffect, useRef } from "react";
 import Link from "next/link";
 import Searchbar from "@/app/components/Interactivity/Searchbar";
 import CardMenu from "../Interactivity/CardMenu";
 import { Movie } from "@/services/types";
+import { useMovieStore } from "@/lib/useMoviesStore";
 
 interface LinkConfigProps {
     asLink: boolean
@@ -29,39 +30,20 @@ export default function Movieclient({
     }:Props) {
     const inputRef: MutableRefObject<HTMLInputElement| undefined > = useRef();
     
-    const prevMoviesRef = useRef<Movie[] | null>(null);
-    const [movies, setMovies] = useState(data);
-    const [filteredMovies, setFilteredMovies] = useState<Movie[] | null>(null);
-
-    const list = filteredMovies ?? movies;
+    const { movies, setMovies, filteredMovies } = useMovieStore();
 
     useEffect(() => {
-        const prevMovies = prevMoviesRef.current;
-
-        // This useEffect ensures that if we delete a movie while being in a search state, we update the filtered list aswell so we can
-        // immediately see the deletion happen in the filtered list, this is because filteredMovies is a derived
-        // state of the movies state and not the real source of truth.
-        // if prevMovies is no longer equal in reference to movies and we have filtered list
-        // We want to update the filtered list with a new list where we only keep the movies in the filtered list whose id still exists in
-        // the movies list and the filtered movies list, those who are no longer in the movies list are excluded
-        if(prevMovies && prevMovies !== movies && filteredMovies) {
-            setFilteredMovies(movies.filter(movie => filteredMovies.some(fm => fm.id === movie.id)))
-        }
-
-        prevMoviesRef.current = movies;
-
-    }, [movies, filteredMovies])
-
-    useEffect(() => {
-
+        setMovies(data);
+        
         if(inputRef.current) {
             inputRef.current.focus();
         }
-
-    }, [])
+    }, [data, setMovies])
+    
+    const list = filteredMovies ?? movies;
 
     return <div className={styles.layout}>
-                    <Searchbar ref={inputRef} data={movies} setter={setFilteredMovies} />
+                    <Searchbar ref={inputRef} data={movies} />
                     <ul className={styles.gridSection}>
                             {list.map(m => linkConfig?.asLink 
                                 ? (<li key={m.id}>
@@ -78,7 +60,7 @@ export default function Movieclient({
                                 : (<li key={m.id}>
                                         <MovieCard 
                                         clickableOverlay={clickable} 
-                                        topMenuComponent={topMenu ? (<CardMenu setter={setMovies} itemLabel={m.name} itemId={m.id} />):undefined} 
+                                        topMenuComponent={topMenu ? (<CardMenu itemLabel={m.name} itemId={m.id} />):undefined} 
                                         overlayComponent={overlayComponent ?? <p>{m.name}</p>} 
                                         image={m.poster} 
                                         />

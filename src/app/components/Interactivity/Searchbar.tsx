@@ -1,29 +1,31 @@
 'use client'
 
-import { ChangeEvent, Dispatch, forwardRef, KeyboardEvent, memo, SetStateAction, useState } from "react"
+import { ChangeEvent, forwardRef, KeyboardEvent, memo, useState } from "react"
 import styles from "./Searchbar.module.css"
 
 // @ts-ignore
 import { Input, Button } from "@yosang/ui"
 import { Movie } from "@/services/types"
+import { useMovieStore } from "@/lib/useMoviesStore"
 
 type Props = {
     data: Movie[]
-    setter: Dispatch<SetStateAction<Movie[] | null>>
 }
 
-const Searchbar = forwardRef(function SearchBarComponent({data, setter}:Props, ref) {
+const Searchbar = forwardRef(function SearchBarComponent({data}:Props, ref) {
+    const { setFilteredMovies, resetFilter } = useMovieStore();
     const [search, setSearch] = useState("");
 
     const handleSearchSubmit = () => {
-        if(!search.trim()) return
-        setter(data.filter(m => m.name.toLowerCase().includes(search)))
+        if(!search.trim()) {
+            resetFilter();
+            return;
+        }
+        setFilteredMovies(data.filter(m => m.name.toLowerCase().includes(search.toLowerCase())))
     }
 
     const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-        if(e.target.value.trim() === "") {
-            setter(null);
-        }
+        if(e.target.value.trim() === "") resetFilter()
 
         setSearch(e.target.value)
     }
