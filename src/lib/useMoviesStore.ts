@@ -10,6 +10,11 @@ interface MovieStore {
     deleteMovie: (id:number) => void
 }
 
+/**
+ * Movie states with zustand
+ * Allows us to set movies fetched from the API, store a second state with filtered movies, currently in a search input
+ * We can also delete a movie and reset the filtered movies state
+ */
 export const useMovieStore = create<MovieStore>((set, get) => ({
     movies: [],
     filteredMovies: null,

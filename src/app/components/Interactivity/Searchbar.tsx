@@ -9,9 +9,14 @@ import { Movie } from "@/services/types"
 import { useMovieStore } from "@/lib/useMoviesStore"
 
 type Props = {
-    data: Movie[]
+    data: Movie[] // Initial movie data
 }
 
+/**
+ * @description A wrapper for my custom Input component and a button for submission
+ * - Uses the movie store to set the filtered list when providing a search term
+ * - Allows the use of the enter key to submit a search
+ */
 const Searchbar = forwardRef(function SearchBarComponent({data}:Props, ref) {
     const { setFilteredMovies, resetFilter } = useMovieStore();
     const [search, setSearch] = useState("");

@@ -7,6 +7,10 @@ type HeroProps = {
     imageSource: string
 };
 
+/**
+ * @description A simple hero section that uses an Image component from next/image with the priority prop
+ * @returns {JSX.Element}
+ */
 export default function Hero({ children, imageSource }: HeroProps) {
     return <Suspense fallback={<p>Loading...</p>}>
                 <div className={styles.hero}>

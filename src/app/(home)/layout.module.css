@@ -10,7 +10,6 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 var(--spacing-md);
-    height: 10%;
 }
 
 .main {

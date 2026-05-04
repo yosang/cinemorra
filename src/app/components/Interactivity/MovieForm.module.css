@@ -55,3 +55,13 @@
     width: 200px;
     cursor: pointer;
 }
+
+@media (max-width: 600px) {
+    .layout input{
+        width: 20em;
+    }
+
+    .layout textarea {
+        width: 21em;
+    }
+}

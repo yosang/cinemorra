@@ -3,6 +3,10 @@ import styles from "./Logo.module.css";
 import Image, { StaticImageData } from "next/image";
 import { NextFont } from "next/dist/compiled/@next/font";
 
+/**
+ * @description A wrapper for a link used as a clickable logo
+ * @returns {JSX.Element}
+ */
 export default function Logo( { linkHref, logoStyle, logoImg, logoText, logoFont }:{
     linkHref: string
     logoStyle?: "inline" | "stacked",

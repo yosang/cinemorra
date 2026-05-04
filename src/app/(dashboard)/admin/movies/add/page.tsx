@@ -3,7 +3,11 @@ import { getGenres, getStudios } from "@/services/movies";
 
 import { AddMovie } from "../actions";
 
-
+/**
+ * @description Reuses the MovieForm component to add a new movie.
+ * - Fetches genreData and studioData for the MovieForm component, it uses this data to render select elements.
+ * @returns {JSX.Element}
+ */
 export default async function AdminMoviesPage() {
     const [
         { genres: { data: genreData } },

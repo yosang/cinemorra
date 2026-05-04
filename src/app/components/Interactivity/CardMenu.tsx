@@ -8,10 +8,24 @@ import { toast } from "sonner";
 import { useMovieStore } from "@/lib/useMoviesStore";
 
 type Props = {
-    itemLabel: string
-    itemId: number
+    itemLabel: string // A text label, for example the name of the movie
+    itemId: number // The id of the movie, used when deleting a movie
 };
 
+/**
+ * @description An interactive menu component for a movie card.
+ * 
+ * Features:
+ * - Uses toasts to provide a comfirmation phase when deleting movies
+ * - Uses a server action to prompt the deletion of a movie
+ * 
+ * Behavior:
+ * - Animated menu on hover
+ * - Prevents the user from clicking delete multiple times when a confirmation toast is active
+ * - Uses a promise based toast
+ * 
+ * @returns {JSX.Element}
+ */
 export default function CardMenu({ itemLabel, itemId }:Props) {
     const toastRef = useRef<string | number | null>(null)
     const { deleteMovie } = useMovieStore();

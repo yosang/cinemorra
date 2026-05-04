@@ -13,14 +13,28 @@ import { GenreAndStudioObject, Movie } from "@/services/types";
 import { toast } from "sonner";
 
 type Props = {
-    movieData?: Movie
-    genreData: GenreAndStudioObject[]
-    studioData: GenreAndStudioObject[]
-    pendingLabel: string;
-    staticLabel: string;
-    serverActionFN: (initialState: StateProps, formData: FormData) => Promise<StateProps>
+    movieData?: Movie // Data about a specific movie, used when editing a movie
+    genreData: GenreAndStudioObject[] // Genre data about a movie
+    studioData: GenreAndStudioObject[] // Studio data about a movie
+    pendingLabel: string; // Label text used in submit button when in loading state.
+    staticLabel: string;  // Label text used in submit button before loading state.
+    serverActionFN: (initialState: StateProps, formData: FormData) => Promise<StateProps> // A server action function used to submit a movie creation/edit operation
 };
 
+/**
+ * @description A reusable form component that is currently being used in creation/edit of a movie
+ * 
+ * Features:
+ * - Focuses the movie name input on mount
+ * - Resets the form after creating a movie
+ * - Shows a toast notification after creating/editing a movie
+ * - Uses formState for form submission and success/error states
+ * 
+ * Behavior:
+ * - Shows an error when a submission fails
+ * - Shows a toast when a submission is successful
+ * @returns 
+ */
 export default function MovieForm({ movieData, pendingLabel, staticLabel, genreData, studioData, serverActionFN }:Props) {
 
     const inputRef: MutableRefObject<HTMLInputElement | undefined> = useRef();

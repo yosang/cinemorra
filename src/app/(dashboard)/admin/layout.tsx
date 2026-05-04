@@ -13,6 +13,21 @@ import ThemeSwitch from "@/app/components/Interactivity/ThemeSwitch";
 import { logout } from "@/app/(home)/auth/actions";
 import { LogOut } from "lucide-react";
 
+/**
+ * @description We went with a sidebar for the admin layout, here Im using a custom component called HorizontalSplit
+ * HirozontalSplit
+ * - A custom pre-styled and responsive component that allows us to pass JSX for the startSide (left) and for the endSide (right) of the layout.
+ * Hence the name, horizontal split.
+ * 
+ * Sidebar
+ * - Reuses the NavigationBar component, styled to the aesthetics of a sidebar. Consits of a logo, page links and a footer.
+ * 
+ * Main content
+ * - Includes a top navigation bar that persists throughout all pages, with a add new movie button, a theme switcher and a logout button.
+ * - The page content is rendered right under the navigation bar.
+ * 
+ * @returns {JSX.Element}
+ */
 export default function AdminLayout({children}:{children: ReactNode}) {
     
     return <HorizontalSplit
@@ -37,7 +52,6 @@ export default function AdminLayout({children}:{children: ReactNode}) {
                 }
                 endSide={
                 <div className={styles.content}>
-                    <div className={styles.nav}>
                         <NavigationBar sticky={true} Logo={
                                     <Link href={ADMIN_ADD_MOVIE_PATH}><Button>Add new movie</Button></Link>
                                 }>
@@ -55,7 +69,6 @@ export default function AdminLayout({children}:{children: ReactNode}) {
                                     </form>
                                 </div>
                         </NavigationBar>
-                      </div>
                     {children}
                 </div>}
             />

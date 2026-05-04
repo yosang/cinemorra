@@ -7,6 +7,10 @@ type Props = {
     date: string
 }
 
+/**
+ * @description A container for a single review consisting of an icon, header text and date of review
+ * @returns {JSX.Element}
+ */
 export default function ReviewCard({ name, text, date }:Props) {
     return (
         <div className={styles.layout}>

@@ -9,8 +9,9 @@
     gap: 20px;
 }
 
-.row {
+.grid {
     display: grid;
+    justify-items: center;
     width: 100%;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;

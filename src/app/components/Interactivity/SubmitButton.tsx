@@ -5,12 +5,20 @@ import Spinner from "./Spinner";
 import { Check } from "lucide-react";
 
 type Props = {
-    successState?:boolean
-    spinner?:boolean
-    pendingLabel: string;
-    staticLabel: string;
+    successState?:boolean // Wether to show a Check icon on success
+    spinner?:boolean // Wether to use a spinner on loading state
+    pendingLabel: string; // A text label that renders in loading state
+    staticLabel: string; // A text label that renders when not in loading state
 };
 
+/**
+ * @description A wrapper for my custom Button component, which provides some extra features, such as:
+ * - spinner for loading states
+ * - an icon for success feedback
+ * - loading label text
+ * - static label text
+ * @returns {JSX.Element}
+ */
 export function SubmitButton({ successState, spinner = true, pendingLabel, staticLabel }:Props) {
     
     const { pending } = useFormStatus();

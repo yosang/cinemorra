@@ -12,9 +12,9 @@ export default async function HomeView() {
 
     const { movies : { data: movieData}}:MoviesPayload = await getMovies();       
 
-    if(!movieData.length) return notFound();
+    if(!movieData.length) return notFound(); // return early and call notFound if we get back an empty array
     
-    const featuredMovies = movieData.slice(-5);
+    const featuredMovies = movieData.slice(-5); // gets the last five items
     
   return (
       <>

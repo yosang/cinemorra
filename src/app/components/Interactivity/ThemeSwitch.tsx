@@ -3,6 +3,11 @@ import { useEffect, useState } from "react"
 import styles from "./ThemeSwitch.module.css"
 import { Popcorn, Sun } from "lucide-react";
 
+/**
+ * @description A custom component that gets the current browser theme and sets the theme to match it. It also provides interactive icons
+ * to change the them between dark and light
+ * @returns {HTMLButtonElement}
+ */
 export default function ThemeSwitch() {
 
     const [currentTheme, setCurrentTheme] = useState("");

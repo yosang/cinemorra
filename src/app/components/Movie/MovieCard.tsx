@@ -5,12 +5,23 @@ import { useState } from "react";
 import ImageSkeleton from "../Skeletons/ImageSkeleton";
 
 type Props = {
-    image: string
-    topMenuComponent?: JSX.Element | undefined
-    overlayComponent: JSX.Element
-    clickableOverlay: boolean
+    image: string // Link to an image
+    topMenuComponent?: JSX.Element | undefined // A JSX component that represents an interactive menu to render on the MovieCard
+    overlayComponent: JSX.Element // A decorative JSX component to render on the MovieCard, for example a movie title that shows on hover
+    clickableOverlay: boolean // Enables a specific CSS class if the MovieCard is set to be clickable
 };
 
+/**
+ * @description Renders a card with an image and provies further configuration for visible aesthetics and interactivity.
+ * 
+ * Features:
+ * - Provides the option to use a top menu component, such as editing or deleting the resource.
+ * - Uses the Image component from next/image for performance and responsiveness
+ * 
+ * Behavior:
+ * - Shows an animated Image skeleton while the image loads
+ * @returns {JSX.Element} A single MovieCard component with configurable interactivity
+ */
 export default function MovieCard({ image, topMenuComponent, overlayComponent, clickableOverlay = false }:Props) {
     const [isLoading, setIsLoading] = useState(true);
 
