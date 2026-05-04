@@ -2,8 +2,8 @@
 
 This application was built using Node version `v22.22.0` with npm version `10.9.4`.
 
-1. Clone the project with `git clone https://github.com/noroff-backend-2/aug25-fts-ca-yosang-2`.
-2. Change directory with the command `cd fet-module-5-assignment/`.
+1. Clone the project with `git clone https://github.com/yosang/cinemorra`.
+2. Change directory with the command `cd cinemorra`.
 3. Copy the env example with `cp .env.example .env`.
 4. Add the backend API url for movies to the variable `BASE_API`.
 5. Install dependencies with `npm install`.
