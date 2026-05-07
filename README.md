@@ -35,6 +35,9 @@ This application was built using Node version `v22.22.0` with npm version `10.9.
 - `typescript` - Type safety superset of javascript.
 - `eslint-plugin-jsx-a11y` - Accessibility rules linting library.
 
+## Screenshots
+![screenies](https://i.imgur.com/8NOeZxI.png)
+
 # Author
 [Yosmel Chiang](https://github.com/yosang)
 
